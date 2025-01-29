@@ -6,7 +6,7 @@ import {
   ServerStackIcon,
   RectangleStackIcon,
 } from "@heroicons/react/24/solid";
-import { Home, Profile, BookingHistory,PaymentHistory,Categories, Notifications } from "@/pages/dashboard";
+import { GeographicAnalysis, Profile, BookingHistory,PaymentHistory,Categories, Notifications } from "@/pages/dashboard";
 import { SignIn, SignUp } from "@/pages/auth";
 
 const icon = {
@@ -20,8 +20,8 @@ export const routes = [
       {
         icon: <HomeIcon {...icon} />,
         name: "Geography Analysis",
-        path: "/home",
-        element: <Home />,
+        path: "/geographicanalysis",
+        element: <GeographicAnalysis />,
       },
       {
         icon: <UserCircleIcon {...icon} />,

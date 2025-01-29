@@ -29,7 +29,7 @@ import { CheckCircleIcon, ClockIcon } from "@heroicons/react/24/solid";
 import Table from "../components/Table";
 
 
-export function Home() {
+export function GeographicAnalysis() {
 
   const geoperfcolumns = [
     "Metric",
@@ -119,4 +119,4 @@ export function Home() {
   );
 }
 
-export default Home;
+export default GeographicAnalysis;
