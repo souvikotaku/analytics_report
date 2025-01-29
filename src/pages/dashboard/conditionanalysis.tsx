@@ -77,6 +77,9 @@ export function ConditionAnalysis() {
           placeholder=""
           onPointerEnterCapture={() => {}}
           onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#ffb570'
+          }}
         >
           Condition Performance Summary
         </Typography>
@@ -90,6 +93,9 @@ export function ConditionAnalysis() {
           placeholder=""
           onPointerEnterCapture={() => {}}
           onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#ffb570'
+          }}
         >
           Condition Summary
         </Typography>

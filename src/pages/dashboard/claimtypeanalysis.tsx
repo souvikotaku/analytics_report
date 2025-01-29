@@ -73,6 +73,9 @@ export function ClaimtypeAnalysis() {
           placeholder=""
           onPointerEnterCapture={() => {}}
           onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#ffb570'
+          }}
         >
           Claim Type Performance Summary
         </Typography>
@@ -86,6 +89,9 @@ export function ClaimtypeAnalysis() {
           placeholder=""
           onPointerEnterCapture={() => {}}
           onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#ffb570'
+          }}
         >
           Claim Type Summary
         </Typography>

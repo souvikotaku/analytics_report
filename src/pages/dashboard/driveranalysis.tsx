@@ -80,6 +80,9 @@ export function DriverAnalysis() {
           placeholder=""
           onPointerEnterCapture={() => {}}
           onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#ffb570'
+          }}
         >
           Driver Performance Summary
         </Typography>
@@ -93,6 +96,9 @@ export function DriverAnalysis() {
           placeholder=""
           onPointerEnterCapture={() => {}}
           onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#ffb570'
+          }}
         >
           Driver Summary
         </Typography>

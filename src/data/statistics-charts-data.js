@@ -246,10 +246,24 @@ const driverClaimsChart = {
   ],
   options: {
     ...chartsConfig,
-    colors: ["#6366F1"], // Set blue color
+    colors: ["#91a58b"], // Set bar color to #70baff
+    chart: {
+      foreColor: "#7f8292", // Keep this for labels, gridlines, etc.
+    },
+    grid: {
+      borderColor: "#263238", // Set grid line color here
+      row: {
+        colors: ["transparent", "transparent"], // Alternating row colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+      column: {
+        colors: ["transparent", "transparent"], // Alternating column colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+    },
     plotOptions: {
       bar: {
-        columnWidth: "30%", // Increase bar width
+        columnWidth: "30%",
         borderRadius: 5,
       },
     },
@@ -257,6 +271,11 @@ const driverClaimsChart = {
      
       ...chartsConfig.xaxis,
       categories: [" Fahrer Mueller", " Driver Smith", "Водитель Ivanov", "Motorista Silva", "Autista Rossi", "運転手 Tanaka", "司机 Wang", "기사 Kim","Conductor García", "Chauffeur Dubois"], // X-axis labels
+      labels: {
+        style: {
+          colors: "#7f8292" // Set x-axis label color to match y-axis
+        }
+      }
     },
     yaxis: {
       title: {
@@ -289,10 +308,24 @@ const driverPaidChart = {
   ],
   options: {
     ...chartsConfig,
-    colors: ["#6366F1"], // Set blue color
+    colors: ["#91a58b"], // Set bar color to #70baff
+    chart: {
+      foreColor: "#7f8292", // Keep this for labels, gridlines, etc.
+    },
+    grid: {
+      borderColor: "#263238", // Set grid line color here
+      row: {
+        colors: ["transparent", "transparent"], // Alternating row colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+      column: {
+        colors: ["transparent", "transparent"], // Alternating column colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+    },
     plotOptions: {
       bar: {
-        columnWidth: "30%", // Increase bar width
+        columnWidth: "30%",
         borderRadius: 5,
       },
     },
@@ -303,6 +336,11 @@ const driverPaidChart = {
         "Motorista Silva", "Autista Rossi", "運転手 Tanaka", 
         "司机 Wang", "기사 Kim", "Conductor García", "Chauffeur Dubois"
       ], // Keep all drivers in the list
+      labels: {
+        style: {
+          colors: "#7f8292" // Set x-axis label color to match y-axis
+        }
+      }
     },
     yaxis: {
       title: {
@@ -344,7 +382,21 @@ const riskScoresByDriverChart = {
     },
   ],
   options: {
-    colors: ["#6366F1"],
+    colors: ["#91a58b"], // Set bar color to #70baff
+    chart: {
+      foreColor: "#7f8292", // Keep this for labels, gridlines, etc.
+    },
+    grid: {
+      borderColor: "#263238", // Set grid line color here
+      row: {
+        colors: ["transparent", "transparent"], // Alternating row colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+      column: {
+        colors: ["transparent", "transparent"], // Alternating column colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+    },
     plotOptions: {
       bar: {
         columnWidth: "30%",
@@ -357,6 +409,11 @@ const riskScoresByDriverChart = {
         "Motorista Silva", "Autista Rossi", "運転手 Tanaka", 
         "司机 Wang", "기사 Kim", "Conductor García", "Chauffeur Dubois"
       ],
+      labels: {
+        style: {
+          colors: "#7f8292" // Set x-axis label color to match y-axis
+        }
+      }
     },
     yaxis: {
       title: {
@@ -438,10 +495,24 @@ const conditionClaimsChart = {
   ],
   options: {
     ...chartsConfig,
-    colors: ["#6366F1"], // Set blue color
+    colors: ["#fcb470"], // Set bar color to #70baff
+    chart: {
+      foreColor: "#7f8292", // Keep this for labels, gridlines, etc.
+    },
+    grid: {
+      borderColor: "#263238", // Set grid line color here
+      row: {
+        colors: ["transparent", "transparent"], // Alternating row colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+      column: {
+        colors: ["transparent", "transparent"], // Alternating column colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+    },
     plotOptions: {
       bar: {
-        columnWidth: "30%", // Increase bar width
+        columnWidth: "30%",
         borderRadius: 5,
       },
     },
@@ -449,6 +520,11 @@ const conditionClaimsChart = {
      
       ...chartsConfig.xaxis,
       categories: ["Lane Change", "Intersection", "Parking", "Normal", "Backing", "Ice", "Wind"], // X-axis labels
+      labels: {
+        style: {
+          colors: "#7f8292" // Set x-axis label color to match y-axis
+        }
+      }
     },
     yaxis: {
       title: {
@@ -481,16 +557,35 @@ const conditionPaidChart = {
   ],
   options: {
     ...chartsConfig,
-    colors: ["#6366F1"], // Set blue color
+    colors: ["#fcb470"], // Set bar color to #70baff
+    chart: {
+      foreColor: "#7f8292", // Keep this for labels, gridlines, etc.
+    },
+    grid: {
+      borderColor: "#263238", // Set grid line color here
+      row: {
+        colors: ["transparent", "transparent"], // Alternating row colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+      column: {
+        colors: ["transparent", "transparent"], // Alternating column colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+    },
     plotOptions: {
       bar: {
-        columnWidth: "30%", // Increase bar width
+        columnWidth: "30%",
         borderRadius: 5,
       },
     },
     xaxis: {
       ...chartsConfig.xaxis,
       categories: ["Lane Change", "Intersection", "Parking", "Normal", "Backing", "Ice", "Wind"], // Keep all drivers in the list
+      labels: {
+        style: {
+          colors: "#7f8292" // Set x-axis label color to match y-axis
+        }
+      }
     },
     yaxis: {
       title: {
@@ -532,7 +627,21 @@ const riskScoresByConditionChart = {
     },
   ],
   options: {
-    colors: ["#6366F1"],
+    colors: ["#fcb470"], // Set bar color to #70baff
+    chart: {
+      foreColor: "#7f8292", // Keep this for labels, gridlines, etc.
+    },
+    grid: {
+      borderColor: "#263238", // Set grid line color here
+      row: {
+        colors: ["transparent", "transparent"], // Alternating row colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+      column: {
+        colors: ["transparent", "transparent"], // Alternating column colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+    },
     plotOptions: {
       bar: {
         columnWidth: "30%",
@@ -541,6 +650,11 @@ const riskScoresByConditionChart = {
     },
     xaxis: {
       categories: ["Lane Change", "Intersection", "Parking", "Normal", "Backing", "Ice", "Wind"],
+      labels: {
+        style: {
+          colors: "#7f8292" // Set x-axis label color to match y-axis
+        }
+      }
     },
     yaxis: {
       title: {
@@ -622,10 +736,24 @@ const claimtypeClaimsChart = {
   ],
   options: {
     ...chartsConfig,
-    colors: ["#6366F1"], // Set blue color
+    colors: ["#e0829d"], // Set bar color to #70baff
+    chart: {
+      foreColor: "#7f8292", // Keep this for labels, gridlines, etc.
+    },
+    grid: {
+      borderColor: "#263238", // Set grid line color here
+      row: {
+        colors: ["transparent", "transparent"], // Alternating row colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+      column: {
+        colors: ["transparent", "transparent"], // Alternating column colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+    },
     plotOptions: {
       bar: {
-        columnWidth: "30%", // Increase bar width
+        columnWidth: "30%",
         borderRadius: 5,
       },
     },
@@ -633,6 +761,11 @@ const claimtypeClaimsChart = {
      
       ...chartsConfig.xaxis,
       categories: ["BI", "PD", "MEDICAL PAYMENTS"], // X-axis labels
+      labels: {
+        style: {
+          colors: "#7f8292" // Set x-axis label color to match y-axis
+        }
+      }
     },
     yaxis: {
       title: {
@@ -665,16 +798,35 @@ const claimtypePaidChart = {
   ],
   options: {
     ...chartsConfig,
-    colors: ["#6366F1"], // Set blue color
+    colors: ["#e0829d"], // Set bar color to #70baff
+    chart: {
+      foreColor: "#7f8292", // Keep this for labels, gridlines, etc.
+    },
+    grid: {
+      borderColor: "#263238", // Set grid line color here
+      row: {
+        colors: ["transparent", "transparent"], // Alternating row colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+      column: {
+        colors: ["transparent", "transparent"], // Alternating column colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+    },
     plotOptions: {
       bar: {
-        columnWidth: "30%", // Increase bar width
+        columnWidth: "30%",
         borderRadius: 5,
       },
     },
     xaxis: {
       ...chartsConfig.xaxis,
       categories: ["BI", "PD", "MEDICAL PAYMENTS"], // Keep all drivers in the list
+      labels: {
+        style: {
+          colors: "#7f8292" // Set x-axis label color to match y-axis
+        }
+      }
     },
     yaxis: {
       title: {
@@ -717,7 +869,21 @@ const riskScoresByClaimChart = {
     },
   ],
   options: {
-    colors: ["#6366F1"],
+    colors: ["#e0829d"], // Set bar color to #70baff
+    chart: {
+      foreColor: "#7f8292", // Keep this for labels, gridlines, etc.
+    },
+    grid: {
+      borderColor: "#263238", // Set grid line color here
+      row: {
+        colors: ["transparent", "transparent"], // Alternating row colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+      column: {
+        colors: ["transparent", "transparent"], // Alternating column colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+    },
     plotOptions: {
       bar: {
         columnWidth: "30%",
@@ -726,6 +892,11 @@ const riskScoresByClaimChart = {
     },
     xaxis: {
       categories: ["BI", "PD", "MEDICAL PAYMENTS"],
+      labels: {
+        style: {
+          colors: "#7f8292" // Set x-axis label color to match y-axis
+        }
+      }
     },
     yaxis: {
       title: {
