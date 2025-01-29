@@ -1,31 +1,11 @@
-import React from "react";
 import {
-  Typography,
-  Card,
-  CardHeader,
-  CardBody,
-  IconButton,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-  Avatar,
-  Tooltip,
-  Progress,
-} from "@material-tailwind/react";
-import {
-  EllipsisVerticalIcon,
-  ArrowUpIcon,
-} from "@heroicons/react/24/outline";
-import { StatisticsCard } from "@/widgets/cards";
-import { StatisticsChart } from "@/widgets/charts";
-import {
-  statisticsCardsData,
-  driveranalysisChartsData,
-  projectsTableData,
-  ordersOverviewData,
+  driveranalysisChartsData
 } from "@/data";
-import { CheckCircleIcon, ClockIcon } from "@heroicons/react/24/solid";
+import { StatisticsChart } from "@/widgets/charts";
+import { ClockIcon } from "@heroicons/react/24/solid";
+import {
+  Typography
+} from "@material-tailwind/react";
 import Table from "../components/Table";
 
 
