@@ -47,6 +47,95 @@ export function GeographicAnalysis() {
 
   return (
     <div className="mt-6">
+      <div>
+      <Typography  
+        variant="h6"
+          color="blue-gray"
+          className="mb-3 mt-8"
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#ffb570',
+            fontWeight: 'bold',
+            fontSize: '30px'
+          }}>
+Geography Analysis
+        </Typography>
+        <Typography  
+        variant="h6"
+          color="blue-gray"
+          className="mb-3 mt-8"
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#ffb570'
+          }}>
+Geography Recommendations
+        </Typography>
+        <Typography
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#7f8292',
+            fontWeight: 'bold'
+          }}
+        >
+        Geography: Review High-Cost State (z-score: 2.25σ)
+        </Typography>
+        <Typography
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#7f8292',
+          }}
+        >
+        {`Consider reviewing claims handling procedures in TX, where total paid claims are notably (>95% confidence) above average (z-score: 2.25σ).`}
+        </Typography>
+        <Typography
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#7f8292',
+            fontWeight: 'bold',
+            marginTop: '10px'
+          }}
+        >
+         Geography: Cost Efficiency Analysis (Top 3 states by average claim cost (with percentile ranking))
+        </Typography>
+        <Typography
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#7f8292',
+          }}
+        >
+        {`The highest average cost per claim is observed in TX ($57,503.54, 100th percentile), IL ($38,302.47, 85th
+ percentile), KS ($23,407.95, 71th percentile). This may warrant investigation of claims handling efficiency in
+ these regions.`}
+        </Typography>
+      </div>
+      
+      <div>
+        <Typography
+          variant="h6"
+          color="blue-gray"
+          className="mb-3 mt-8"
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#ffb570'
+          }}
+        >
+          Geography Charts
+        </Typography>
+      </div>
     
       {/* <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3"> */}
       <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-2 grid-auto-rows-auto">

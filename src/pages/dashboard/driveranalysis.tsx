@@ -52,6 +52,99 @@ export function DriverAnalysis() {
 
   return (
     <div className="mt-6">
+
+<div>
+      <Typography  
+        variant="h6"
+          color="blue-gray"
+          className="mb-3 mt-8"
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#ffb570',
+            fontWeight: 'bold',
+            fontSize: '30px'
+          }}>
+ Driver Analysis
+
+        </Typography>
+        <Typography  
+        variant="h6"
+          color="blue-gray"
+          className="mb-3 mt-8"
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#ffb570'
+          }}>
+Driver Recommendations
+        </Typography>
+        <Typography
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#7f8292',
+            fontWeight: 'bold'
+          }}
+        >
+        Driver: High-Risk Driver Review (2.64σ)
+        </Typography>
+        <Typography
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#7f8292',
+          }}
+        >
+        {`Fahrer Mueller shows significantly higher claim costs. Consider reviewing their driving record and safety
+ practices.
+`}
+        </Typography>
+        <Typography
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#7f8292',
+            fontWeight: 'bold',
+            marginTop: '10px'
+          }}
+        >
+         Driver: Cost Efficiency Analysis (Top 3 drivers by total claim cost (with percentile ranking))
+        </Typography>
+        <Typography
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#7f8292',
+          }}
+        >
+        {`The highest total claim cost is observed for Fahrer Mueller ($297,811.72, 100th percentile), Driver Smith
+ ($148,122.90, 90th percentile), Водитель Ivanov ($45,473.46, 80th percentile). This may warrant
+ investigation of claims handling efficiency for these drivers.`}
+        </Typography>
+      </div>
+      
+      <div>
+        <Typography
+          variant="h6"
+          color="blue-gray"
+          className="mb-3 mt-8"
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#ffb570'
+          }}
+        >
+          Driver Charts
+        </Typography>
+      </div>
     
     <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-2 grid-auto-rows-auto">
         {driveranalysisChartsData.map((props) => (

@@ -45,7 +45,79 @@ export function ClaimtypeAnalysis() {
 
   return (
     <div className="mt-6">
-    
+    <div>
+      <Typography  
+        variant="h6"
+          color="blue-gray"
+          className="mb-3 mt-8"
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#ffb570',
+            fontWeight: 'bold',
+            fontSize: '30px'
+          }}>
+  Claim Type Analysis
+
+        </Typography>
+        <Typography  
+        variant="h6"
+          color="blue-gray"
+          className="mb-3 mt-8"
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#ffb570'
+          }}>
+ Claim Type Recommendations
+        </Typography>
+        <Typography
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#7f8292',
+            fontWeight: 'bold'
+          }}
+        >
+         Claim_Type: Cost Efficiency Analysis (Top 3 claim types by average cost (with percentile ranking))
+
+        </Typography>
+        <Typography
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#7f8292',
+          }}
+        >
+        {`The highest average cost per claim is observed for BI ($64,491.37, 100th percentile), PD ($16,031.52, 66th
+ percentile), MEDICAL PAYMENTS ($0.00, 33th percentile). This may warrant investigation of claims handling
+ procedures for these claim types.
+`}
+        </Typography>
+       
+      </div>
+      
+      <div>
+        <Typography
+          variant="h6"
+          color="blue-gray"
+          className="mb-3 mt-8"
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#ffb570'
+          }}
+        >
+          Condition Charts
+
+
+        </Typography>
+      </div>
     <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-2 grid-auto-rows-auto">
         {claimtypeanalysisChartsData.map((props) => (
           <StatisticsChart

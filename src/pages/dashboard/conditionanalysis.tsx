@@ -49,6 +49,103 @@ export function ConditionAnalysis() {
 
   return (
     <div className="mt-6">
+
+<div>
+      <Typography  
+        variant="h6"
+          color="blue-gray"
+          className="mb-3 mt-8"
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#ffb570',
+            fontWeight: 'bold',
+            fontSize: '30px'
+          }}>
+ Condition Analysis
+
+        </Typography>
+        <Typography  
+        variant="h6"
+          color="blue-gray"
+          className="mb-3 mt-8"
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#ffb570'
+          }}>
+Condition Recommendations
+        </Typography>
+        <Typography
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#7f8292',
+            fontWeight: 'bold'
+          }}
+        >
+         Condition: Review High-Cost Condition (z-score: 2.19σ)
+
+        </Typography>
+        <Typography
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#7f8292',
+          }}
+        >
+        {`Consider reviewing claims handling procedures for Lane Change conditions, where total paid claims are
+ notably (>95% confidence) above average (z-score: 2.19σ).
+`}
+        </Typography>
+        <Typography
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#7f8292',
+            fontWeight: 'bold',
+            marginTop: '10px'
+          }}
+        >
+         Condition: Cost Efficiency Analysis (Top 3 conditions by total claim cost (with percentile ranking))
+        </Typography>
+        <Typography
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#7f8292',
+          }}
+        >
+        {`The highest total claim cost is observed for Lane Change ($298,419.70, 100th percentile), Intersection
+ ($140,442.18, 85th percentile), Parking ($45,473.46, 71th percentile). This may warrant investigation of
+ claims handling procedures under these conditions.
+`}
+        </Typography>
+      </div>
+      
+      <div>
+        <Typography
+          variant="h6"
+          color="blue-gray"
+          className="mb-3 mt-8"
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#ffb570'
+          }}
+        >
+          Condition Charts
+
+
+        </Typography>
+      </div>
     
     <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-2 grid-auto-rows-auto">
         {conditionanalysisChartsData.map((props) => (
