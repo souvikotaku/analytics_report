@@ -1,143 +1,125 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
+  Typography,
   Card,
   CardHeader,
   CardBody,
-  Typography,
-  Chip,
+  IconButton,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Avatar,
+  Tooltip,
+  Progress,
 } from "@material-tailwind/react";
+import {
+  EllipsisVerticalIcon,
+  ArrowUpIcon,
+} from "@heroicons/react/24/outline";
+import { StatisticsCard } from "@/widgets/cards";
+import { StatisticsChart } from "@/widgets/charts";
+import {
+  statisticsCardsData,
+  conditionanalysisChartsData,
+  projectsTableData,
+  ordersOverviewData,
+} from "@/data";
+import { CheckCircleIcon, ClockIcon } from "@heroicons/react/24/solid";
+import Table from "../components/Table";
 
-// Utility function to get categories from localStorage
-const getCategoriesFromLocalStorage = () => {
-  const categories = localStorage.getItem("categories");
-  return categories ? JSON.parse(categories) : []; // Return parsed categories if available, or an empty array
-};
 
 export function Categories() {
-  const paymentTableData = [
-    { id: 1, name: "John Doe", date: "2024-10-15", status: "Successful", amount: 200 },
-    { id: 2, name: "Jane Smith", date: "2024-10-16", status: "Cancelled", amount: 150 },
-    { id: 3, name: "Robert Brown", date: "2024-10-17", status: "Pending", amount: 250 },
+
+  const geoperfcolumns = [
+    "Metric",
+    "Claims per Item",
+    "Cost per Item",
   ];
 
-  const [categories, setCategories] = useState(getCategoriesFromLocalStorage());
-  const [newCategory, setNewCategory] = useState("");
-  const [editCategoryId, setEditCategoryId] = useState(null);
-  const [editCategoryName, setEditCategoryName] = useState("");
+  const geoperfdata = [
+    ["Mean", 2.0, " $53,086.67"],
+    ["Median", 1.5, " $572.55"],
+    ["Std_Dev", 1.2, " $92,728.89"],
+  ];
 
-  // Update localStorage whenever categories state changes
-  useEffect(() => {
-    localStorage.setItem("categories", JSON.stringify(categories));
-  }, [categories]);
+  const columns = [
+    "Item",
+    "Claims",
+    "Total Paid",
+    "Average per Claim",
+    "% Claims",
+    "% Costs",
+    "Top Loss Types",
+    "Risk Score",
+  ];
 
-  const handleAddCategory = () => {
-    if (!newCategory.trim()) return; // Don't add empty categories
-    const newCategoryObj = { id: Date.now(), name: newCategory };
-    setCategories((prevCategories) => [...prevCategories, newCategoryObj]);
-    setNewCategory(""); // Reset input
-  };
+ 
+  
+  const data = [
+    ["Fahrer Mueller", 3, "$297,811.72", "$99,270.57", "15.0%", "56.1%", "PD(2), BI(1)", "+2.64σ"],
+    ["Driver Smith", 4, "$148,122.90", "$37,030.72", "20.0%", "27.9%", "PD(3), BI(1)", "+1.02σ"],
+    ["Водитель Ivanov", 2, "$45,473.46", "$22,736.73", "10.0%", "8.6%", "PD(1), BI(1)", "-0.08σ"],
+    ["Motorista Silva", 1, "$38,302.47", "$38,302.47", "5.0%", "7.2%", "PD(1)", "-0.16σ"],
+    ["Autista Rossi", 1, "$1,133.61", "$1,133.61", "5.0%", "0.2%", "PD(1)", "-0.56σ"],
+    ["運転手 Tanaka", 1, "$11.50", "$11.50", "5.0%", "0.0%", "PD(1)", "-0.57σ"],
+    ["司机 Wang", 4, "$5.50", "$1.38", "20.0%", "0.0%", "BI(2), MEDICAL PAYMENTS(2)", "-0.57σ"],
+    ["기사 Kim", 1, "$5.50", "$5.50", "5.0%", "0.0%", "PD(1)", "-0.57σ"],
+    ["Conductor García", 1, "$0.00", "$0.00", "5.0%", "0.0%", "PD(1)", "-0.57σ"],
+    ["Chauffeur Dubois", 2, "$0.00", "$0.00", "10.0%", "0.0%", "PD(2)", "-0.57σ"]
+  ];
 
-  const handleEdit = (id, name) => {
-    setEditCategoryId(id);
-    setEditCategoryName(name);
-  };
-
-  const handleSaveEdit = () => {
-    const updatedCategories = categories.map((category) =>
-      category.id === editCategoryId ? { ...category, name: editCategoryName } : category
-    );
-    setCategories(updatedCategories);
-    setEditCategoryId(null);
-    setEditCategoryName("");
-  };
-
-  const handleDelete = (id) => {
-    const filteredCategories = categories.filter((category) => category.id !== id);
-    setCategories(filteredCategories);
-  };
 
   return (
-    <div className="mt-12 mb-8 flex flex-col gap-12">
-      <Card>
-        <CardHeader variant="gradient" color="gray" className="mb-8 p-6">
-          <Typography variant="h6" color="white">
-            Category List
-          </Typography>
-        </CardHeader>
-        <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
-          {/* Add Category */}
-          <div className="mb-6" style={{
-            paddingLeft: '1.2%'
-          }}>
-            <input
-              type="text"
-              value={newCategory}
-              onChange={(e) => setNewCategory(e.target.value)}
-              className="border p-2 rounded-md"
-              placeholder="Add a new category"
-            />
-            <button
-              onClick={handleAddCategory}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md ml-2"
-            >
-              Add Category
-            </button>
-          </div>
-
-          {/* Category List */}
-          <ul className="space-y-4">
-            {categories.map((category) => (
-              <li
-                key={category.id}
-                className="flex justify-between items-center bg-white p-4 rounded-lg shadow-md"
-              >
-                {editCategoryId === category.id ? (
-                  <div className="flex items-center space-x-2">
-                    <input
-                      type="text"
-                      value={editCategoryName}
-                      onChange={(e) => setEditCategoryName(e.target.value)}
-                      className="border border-gray-300 rounded-md p-2"
-                    />
-                    <button
-                      onClick={handleSaveEdit}
-                      className="bg-blue-500 text-white px-4 py-2 rounded-md"
-                    >
-                      Save
-                    </button>
-                    <button
-                      onClick={() => setEditCategoryId(null)}
-                      className="bg-gray-500 text-white px-4 py-2 rounded-md"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                ) : (
-                  <div className="flex items-center space-x-4 w-full justify-between">
-                    <span className="text-lg font-medium w-1/2 truncate">
-                      {category.name}
-                    </span>
-                    <div className="flex space-x-2 w-auto">
-                      <button
-                        onClick={() => handleEdit(category.id, category.name)}
-                        className="bg-yellow-500 text-white px-4 py-2 rounded-md"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDelete(category.id)}
-                        className="bg-red-500 text-white px-4 py-2 rounded-md"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </li>
-            ))}
-          </ul>
-        </CardBody>
-      </Card>
+    <div className="mt-6">
+    
+    <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-2 grid-auto-rows-auto">
+        {conditionanalysisChartsData.map((props) => (
+          <StatisticsChart
+            key={props.title}
+            {...props}
+            footer={
+              <Typography
+                variant="small"
+                className="flex items-center font-normal text-blue-gray-600"
+                placeholder=""
+                onPointerEnterCapture={() => {}}
+                onPointerLeaveCapture={() => {}}>
+                <ClockIcon strokeWidth={2} className="h-4 w-4 text-blue-gray-400" />
+                &nbsp;{props.footer}
+              </Typography>
+            }
+          />
+        ))}
+      </div>
+      <div>
+        <Typography
+          variant="h6"
+          color="blue-gray"
+          className="mb-3 mt-8"
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+        >
+          Driver Performance Summary
+        </Typography>
+        <Table columns={geoperfcolumns} data={geoperfdata} />
+      </div>
+      <div>
+        <Typography
+          variant="h6"
+          color="blue-gray"
+          className="mb-3 mt-8"
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+        >
+          Driver Summary
+        </Typography>
+        <Table columns={columns} data={data} />
+      </div>
+      
+     
     </div>
   );
 }

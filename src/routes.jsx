@@ -6,7 +6,7 @@ import {
   ServerStackIcon,
   RectangleStackIcon,
 } from "@heroicons/react/24/solid";
-import { GeographicAnalysis, Profile, BookingHistory,PaymentHistory,Categories, Notifications } from "@/pages/dashboard";
+import { GeographicAnalysis, DriverAnalysis, BookingHistory,PaymentHistory,Categories, Notifications } from "@/pages/dashboard";
 import { SignIn, SignUp } from "@/pages/auth";
 
 const icon = {
@@ -26,8 +26,8 @@ export const routes = [
       {
         icon: <UserCircleIcon {...icon} />,
         name: "Driver Analysis",
-        path: "/profile",
-        element: <Profile />,
+        path: "/driveranalysis",
+        element: <DriverAnalysis />,
       },
       {
         icon: <TableCellsIcon {...icon} />,

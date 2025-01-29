@@ -21,7 +21,7 @@ import { StatisticsCard } from "@/widgets/cards";
 import { StatisticsChart } from "@/widgets/charts";
 import {
   statisticsCardsData,
-  statisticsChartsData,
+  driveranalysisChartsData,
   projectsTableData,
   ordersOverviewData,
 } from "@/data";
@@ -29,12 +29,18 @@ import { CheckCircleIcon, ClockIcon } from "@heroicons/react/24/solid";
 import Table from "../components/Table";
 
 
-export function GeographicAnalysis() {
+export function DriverAnalysis() {
 
   const geoperfcolumns = [
     "Metric",
     "Claims per Item",
     "Cost per Item",
+  ];
+
+  const geoperfdata = [
+    ["Mean", 2.0, " $53,086.67"],
+    ["Median", 1.5, " $572.55"],
+    ["Std_Dev", 1.2, " $92,728.89"],
   ];
 
   const columns = [
@@ -48,30 +54,27 @@ export function GeographicAnalysis() {
     "Risk Score",
   ];
 
-  const geoperfdata = [
-    ["Mean", 2.9, "$75,838.09"],
-    ["Median", 2.0, "$7,078.24"],
-    ["Std_Dev", 2.1, "$119,536.30"],
-  ];
+ 
   
   const data = [
-    ["TX", 6, "$345,021.27", "$57,503.54", "30.0%", "65.0%", "PD(4), BI(2)", "+2.25σ"],
-    ["KS", 6, "$140,447.68", "$23,407.95", "30.0%", "26.5%", "BI(3), MEDICAL PAYMENTS(2), PD(1)", "+0.54σ"],
-    ["IL", 1, "$38,302.47", "$38,302.47", "5.0%", "7.2%", "PD(1)", "-0.31σ"],
-    ["MO", 1, "$7,078.24", "$7,078.24", "5.0%", "1.3%", "PD(1)", "-0.58σ"],
-    ["CA", 3, "$17.00", "$5.67", "15.0%", "0.0%", "PD(3)", "-0.63σ"],
-    ["TN", 1, "$0.00", "$0.00", "5.0%", "0.0%", "PD(1)", "-0.63σ"],
-    ["AZ", 2, "$0.00", "$0.00", "10.0%", "0.0%", "PD(2)", "-0.63σ"],
+    ["Fahrer Mueller", 3, "$297,811.72", "$99,270.57", "15.0%", "56.1%", "PD(2), BI(1)", "+2.64σ"],
+    ["Driver Smith", 4, "$148,122.90", "$37,030.72", "20.0%", "27.9%", "PD(3), BI(1)", "+1.02σ"],
+    ["Водитель Ivanov", 2, "$45,473.46", "$22,736.73", "10.0%", "8.6%", "PD(1), BI(1)", "-0.08σ"],
+    ["Motorista Silva", 1, "$38,302.47", "$38,302.47", "5.0%", "7.2%", "PD(1)", "-0.16σ"],
+    ["Autista Rossi", 1, "$1,133.61", "$1,133.61", "5.0%", "0.2%", "PD(1)", "-0.56σ"],
+    ["運転手 Tanaka", 1, "$11.50", "$11.50", "5.0%", "0.0%", "PD(1)", "-0.57σ"],
+    ["司机 Wang", 4, "$5.50", "$1.38", "20.0%", "0.0%", "BI(2), MEDICAL PAYMENTS(2)", "-0.57σ"],
+    ["기사 Kim", 1, "$5.50", "$5.50", "5.0%", "0.0%", "PD(1)", "-0.57σ"],
+    ["Conductor García", 1, "$0.00", "$0.00", "5.0%", "0.0%", "PD(1)", "-0.57σ"],
+    ["Chauffeur Dubois", 2, "$0.00", "$0.00", "10.0%", "0.0%", "PD(2)", "-0.57σ"]
   ];
 
 
   return (
     <div className="mt-6">
     
-      {/* <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3"> */}
-      <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-2 grid-auto-rows-auto">
-
-        {statisticsChartsData.map((props) => (
+    <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-2 grid-auto-rows-auto">
+        {driveranalysisChartsData.map((props) => (
           <StatisticsChart
             key={props.title}
             {...props}
@@ -98,7 +101,7 @@ export function GeographicAnalysis() {
           onPointerEnterCapture={() => {}}
           onPointerLeaveCapture={() => {}}
         >
-          Geography Performance Summary
+          Driver Performance Summary
         </Typography>
         <Table columns={geoperfcolumns} data={geoperfdata} />
       </div>
@@ -111,7 +114,7 @@ export function GeographicAnalysis() {
           onPointerEnterCapture={() => {}}
           onPointerLeaveCapture={() => {}}
         >
-          Geography Summary
+          Driver Summary
         </Typography>
         <Table columns={columns} data={data} />
       </div>
@@ -121,4 +124,4 @@ export function GeographicAnalysis() {
   );
 }
 
-export default GeographicAnalysis;
+export default DriverAnalysis;
