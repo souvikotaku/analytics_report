@@ -230,6 +230,10 @@ const riskScoresByGeographyChart = {
         fontWeight: "bold",
       },
     },
+    tooltip: {
+      theme: "dark",
+    
+    },
   },
 };
 
@@ -365,6 +369,7 @@ const driverPaidChart = {
       },
     },
     tooltip: {
+      theme: "dark",
       y: {
         formatter: (value) => `$${value.toLocaleString()}`, // Display formatted value on hover
       },
@@ -478,6 +483,10 @@ const riskScoresByDriverChart = {
         fontSize: "16px",
         fontWeight: "bold",
       },
+    },
+    tooltip: {
+      theme: "dark",
+    
     },
   },
 };
@@ -610,6 +619,7 @@ const conditionPaidChart = {
       },
     },
     tooltip: {
+     theme: 'dark',
       y: {
         formatter: (value) => `$${value.toLocaleString()}`, // Display formatted value on hover
       },
@@ -719,6 +729,10 @@ const riskScoresByConditionChart = {
         fontSize: "16px",
         fontWeight: "bold",
       },
+    },
+    tooltip: {
+      theme: "dark",
+    
     },
   },
 };
@@ -852,6 +866,7 @@ const claimtypePaidChart = {
       },
     },
     tooltip: {
+      theme: 'dark',
       y: {
         formatter: (value) => `$${value.toLocaleString()}`, // Display formatted value on hover
       },
@@ -961,6 +976,10 @@ const riskScoresByClaimChart = {
         fontSize: "16px",
         fontWeight: "bold",
       },
+    },
+    tooltip: {
+      theme: "dark",
+    
     },
   },
 };
