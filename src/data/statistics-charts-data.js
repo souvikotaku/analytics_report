@@ -6,29 +6,48 @@ const websiteViewsChart = {
   series: [
     {
       name: "Number of Claims",
-      data: [6, 6, 1, 1, 3, 1, 2], // Match the values in the image
+      data: [6, 6, 1, 1, 3, 1, 2],
     },
   ],
   options: {
-    ...chartsConfig,
-    colors: ["#6366F1"], // Set blue color
+    ...chartsConfig, // Assuming chartsConfig contains shared chart settings
+    colors: ["#70baff"], // Set bar color to #70baff
+    chart: {
+      foreColor: "#7f8292", // Keep this for labels, gridlines, etc.
+    },
+    grid: {
+      borderColor: "#263238", // Set grid line color here
+      row: {
+        colors: ["transparent", "transparent"], // Alternating row colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+      column: {
+        colors: ["transparent", "transparent"], // Alternating column colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+    },
     plotOptions: {
       bar: {
-        columnWidth: "30%", // Increase bar width
+        columnWidth: "30%",
         borderRadius: 5,
       },
     },
     xaxis: {
       ...chartsConfig.xaxis,
-      categories: ["TX", "KS", "IL", "MO", "CA", "TN", "AZ"], // X-axis labels
+      categories: ["TX", "KS", "IL", "MO", "CA", "TN", "AZ"],
+      labels: {
+        style: {
+          colors: "#7f8292" // Set x-axis label color to match y-axis
+        }
+      }
     },
     yaxis: {
       title: {
         text: "Number of Claims",
       },
-      tickAmount: 6, // Ensures labels show every integer from 0 to 6
+      tickAmount: 6,
       labels: {
-        formatter: (value) => Math.floor(value), // Force whole numbers
+        formatter: (value) => Math.floor(value),
       },
     },
     title: {
@@ -53,16 +72,35 @@ const totalPaidChart = {
   ],
   options: {
     ...chartsConfig,
-    colors: ["#6366F1"], // Set blue color
+    colors: ["#70baff"], // Set bar color to #70baff
+    chart: {
+      foreColor: "#7f8292", // Keep this for labels, gridlines, etc.
+    },
+    grid: {
+      borderColor: "#263238", // Set grid line color here
+      row: {
+        colors: ["transparent", "transparent"], // Alternating row colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+      column: {
+        colors: ["transparent", "transparent"], // Alternating column colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+    },
     plotOptions: {
       bar: {
-        columnWidth: "30%", // Increase bar width
+        columnWidth: "30%",
         borderRadius: 5,
       },
     },
     xaxis: {
       ...chartsConfig.xaxis,
       categories: ["TX", "KS", "IL", "MO", "CA", "TN", "AZ"], // X-axis labels
+      labels: {
+        style: {
+          colors: "#7f8292" // Set x-axis label color to match y-axis
+        }
+      }
     },
     yaxis: {
       title: {
@@ -99,7 +137,21 @@ const riskScoresByGeographyChart = {
     },
   ],
   options: {
-    colors: ["#6366F1"],
+    colors: ["#70baff"], // Set bar color to #70baff
+    chart: {
+      foreColor: "#7f8292", // Keep this for labels, gridlines, etc.
+    },
+    grid: {
+      borderColor: "#263238", // Set grid line color here
+      row: {
+        colors: ["transparent", "transparent"], // Alternating row colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+      column: {
+        colors: ["transparent", "transparent"], // Alternating column colors (transparent for no fill)
+        opacity: 0.5 // Adjust opacity as needed
+      },
+    },
     plotOptions: {
       bar: {
         columnWidth: "30%",
@@ -108,6 +160,11 @@ const riskScoresByGeographyChart = {
     },
     xaxis: {
       categories: ["TX", "KS", "IL", "MO", "CA", "TN", "AZ"],
+      labels: {
+        style: {
+          colors: "#7f8292" // Set x-axis label color to match y-axis
+        }
+      }
     },
     yaxis: {
       title: {

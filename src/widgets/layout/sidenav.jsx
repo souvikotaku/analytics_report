@@ -23,6 +23,10 @@ export function Sidenav({ brandImg, brandName, routes }) {
       className={`${sidenavTypes[sidenavType]} ${
         openSidenav ? "translate-x-0" : "-translate-x-80"
       } fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 border border-blue-gray-100`}
+    style={{
+      backgroundColor: "#17181d",
+      border: '1px solid #ffa857'
+    }}
     >
       <div
         className={`relative`}
@@ -46,7 +50,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
 
 }} 
 
-src="/img/carwashlogo.png" alt="Car Wash" />
+src="/img/strativelogo.png" alt="Car Wash" />
 
         </Link>
         <IconButton
@@ -69,6 +73,7 @@ src="/img/carwashlogo.png" alt="Car Wash" />
                   variant="small"
                   color={sidenavType === "dark" ? "white" : "blue-gray"}
                   className="font-black uppercase opacity-75"
+                  
                 >
                   {title}
                 </Typography>
@@ -87,6 +92,7 @@ src="/img/carwashlogo.png" alt="Car Wash" />
                           ? "white"
                           : "blue-gray"
                       }
+                      
                       className="flex items-center gap-4 px-4 capitalize"
                       fullWidth
                     >
@@ -94,6 +100,9 @@ src="/img/carwashlogo.png" alt="Car Wash" />
                       <Typography
                         color="inherit"
                         className="font-medium capitalize"
+                        style={{
+                          color:isActive ? 'white' : "#7f8292"
+                        }}
                       >
                         {name}
                       </Typography>

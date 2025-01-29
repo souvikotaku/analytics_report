@@ -55,17 +55,7 @@ export function GeographicAnalysis() {
           <StatisticsChart
             key={props.title}
             {...props}
-            footer={
-              <Typography
-                variant="small"
-                className="flex items-center font-normal text-blue-gray-600"
-                placeholder=""
-                onPointerEnterCapture={() => {}}
-                onPointerLeaveCapture={() => {}}>
-                <ClockIcon strokeWidth={2} className="h-4 w-4 text-blue-gray-400" />
-                &nbsp;{props.footer}
-              </Typography>
-            }
+            
           />
         ))}
       </div>
@@ -77,6 +67,9 @@ export function GeographicAnalysis() {
           placeholder=""
           onPointerEnterCapture={() => {}}
           onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#ffb570'
+          }}
         >
           Geography Performance Summary
         </Typography>
@@ -90,6 +83,9 @@ export function GeographicAnalysis() {
           placeholder=""
           onPointerEnterCapture={() => {}}
           onPointerLeaveCapture={() => {}}
+          style={{
+            color: '#ffb570'
+          }}
         >
           Geography Summary
         </Typography>
