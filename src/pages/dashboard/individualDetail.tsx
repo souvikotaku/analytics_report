@@ -78,12 +78,12 @@ export function IndividualDetail() {
   interface SelectedDataObject {
     type: string;
     name: string;
-    "Total Claims": number;
-    "Total Paid": string;
+    "totalClaims": number;
+    "totalPaid": string;
     "table data": TableDataItem[];
   }
 
-  const geoperfdata: [string, string][] = (selectedDataObject?.["table data"]?.map((item: TableDataItem) => [
+  const geoperfdata: [string, string][] = ((selectedDataObject ? selectedDataObject : JSON.parse(localStorage.getItem('selectedObject') || '{}'))?.["table data"]?.map((item: TableDataItem) => [
     item.description,
     item.totalpaid
   ]) || []);
@@ -122,7 +122,7 @@ export function IndividualDetail() {
                   fontWeight: 'bold',
                   fontSize: '30px'
                 }}>
-                {`Claims by ${selectedDataObject?.type}: ${selectedDataObject?.name}`}
+                {`Claims by ${selectedDataObject?.type || JSON.parse(localStorage.getItem('selectedObject') || '{}').type}: ${selectedDataObject?.name || JSON.parse(localStorage.getItem('selectedObject') || '{}').name}`}
               </Typography>
 
 
@@ -134,7 +134,7 @@ export function IndividualDetail() {
                   color: showLightnew === true ? 'black' : '#7f8292',
                 }}
               >
-                {`Total Claims: ${selectedDataObject?.["Total Claims"]}`}
+                {`totalClaims: ${selectedDataObject?.totalClaims || JSON.parse(localStorage.getItem('selectedObject') || '{}').totalClaims}`}
               </Typography>
               <Typography
                 placeholder=""
@@ -144,7 +144,7 @@ export function IndividualDetail() {
                   color: showLightnew === true ? 'black' : '#7f8292',
                 }}
               >
-                {` Total Paid: ${selectedDataObject?.["Total Paid"]}`}
+                {` Total Paid: ${selectedDataObject?.totalPaid || JSON.parse(localStorage.getItem('selectedObject') || '{}').totalPaid}`}
               </Typography>
 
 

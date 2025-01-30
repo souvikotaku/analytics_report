@@ -58,10 +58,14 @@ export function ClaimtypeAnalysis() {
       const selectedObject = selectData.find(item => item.name === selectedValue);
       if (selectedObject) {
         dispatch(setselectedObject(selectedObject));
+        localStorage.setItem('selectedObject',JSON.stringify(selectedObject))
+
       }
     } else {
       // Handle the case where no state is selected (e.g., reset Redux state)
       dispatch(setselectedObject(null)); // Or a default value
+      localStorage.setItem('selectedObject','')
+
     }
   };
 
@@ -88,7 +92,7 @@ export function ClaimtypeAnalysis() {
   const columns = [
     "Item",
     "Claims",
-    "Total Paid",
+    "totalPaid",
     "Average per Claim",
     "% Claims",
     "% Costs",
@@ -109,8 +113,8 @@ export function ClaimtypeAnalysis() {
       "id": 1,
       "name": "BI", // Name from the screenshot
       "type": "Claim Type", // Type as requested
-      "Total Claims": 5,
-      "Total Paid": "$322,456.85",
+      "totalClaims": 5,
+      "totalPaid": "$322,456.85",
       "table data": [
         {
           "description": "HOUSTON, TX - INSD VEH MADE A THREE LANE CHANGE AND WHILE IN THE PROCESS IT STRUCK CLMT VEH.",
@@ -138,8 +142,8 @@ export function ClaimtypeAnalysis() {
       "id": 2, // Or whatever ID is appropriate
       "name": "PD", // Name from the screenshot
       "type": "Claim Type", // Type as requested
-      "Total Claims": 13, // Total Claims from the additional info
-      "Total Paid": "$208,409.81", // Total Paid from the additional info
+      "totalClaims": 13, // totalClaims from the additional info
+      "totalPaid": "$208,409.81", // totalPaid from the additional info
       "table data": [
         {
           "description": "DALLAS, TX.- AS PER CLMT: INSD DRVR MADE AN UNSAFE LANE SWITCH AND STRUCK CLMT VEH.",
@@ -199,8 +203,8 @@ export function ClaimtypeAnalysis() {
       "id": 3, // Or whatever ID is appropriate
       "name": "MEDICAL PAYMENTS", // Name from the screenshot
       "type": "Claim Type", // Type as requested
-      "Total Claims": 2, // Total Claims from the screenshot
-      "Total Paid": "$0.00", // Total Paid from the screenshot
+      "totalClaims": 2, // totalClaims from the screenshot
+      "totalPaid": "$0.00", // totalPaid from the screenshot
       "table data": [
         {
           "description": "CALISDA, KS-DUE TO THE HEAVY WINDS, INSD VEH ROLLED OVER.",

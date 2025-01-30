@@ -10,7 +10,7 @@ function App() {
   return (
     <Routes>
       <Route path="/dashboard/*" element={<Dashboard />} />
-      <Route path="*" element={<Navigate to="/dashboard/geographicanalysis" replace />} />
+      <Route path="*" element={<Navigate to={`/dashboard/${page || 'geographicanalysis'}`} replace />} />
       <Route path={`/dashboard/${page}/:state`} element={<IndividualDetail />} />
     </Routes>
   );

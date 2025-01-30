@@ -58,10 +58,14 @@ export function ConditionAnalysis() {
       const selectedObject = selectData.find(item => item.name === selectedValue);
       if (selectedObject) {
         dispatch(setselectedObject(selectedObject));
+        localStorage.setItem('selectedObject',JSON.stringify(selectedObject))
+
       }
     } else {
       // Handle the case where no state is selected (e.g., reset Redux state)
       dispatch(setselectedObject(null)); // Or a default value
+      localStorage.setItem('selectedObject','')
+
     }
   };
 
@@ -113,8 +117,8 @@ export function ConditionAnalysis() {
       "id": 1,
       "name": "Intersection",
       "type": "Condition", // Corrected to "Condition"
-      "Total Claims": 2,
-      "Total Paid": "$140,442.18",
+      "totalClaims": 2,
+      "totalPaid": "$140,442.18",
       "table data": [
         {
           "description": "PARSONS, KS. INSD DRVR WAS TRAVELING ON US-400 WHILE CROSSING INTERSECTION WITH US-169, IV NOTICE CV WAS COMING AND TRIED TO SPEED TO AVOID COLLISION. CV DIDN'T STOP AND STRUCK IV TRAILER.",
@@ -130,8 +134,8 @@ export function ConditionAnalysis() {
       "id": 2,
       "name": "Parking",
       "type": "Condition",  // Or "Geography" - set based on your logic
-      "Total Claims": 5,
-      "Total Paid": "$45,473.46",
+      "totalClaims": 5,
+      "totalPaid": "$45,473.46",
       "table data": [
         {
           "description": "WEATHERFORD, TN-INSD VEH WAS ON LOVES TRUCK STOP PARKED, SUDDENLY CLMT VEH STRUCK INSD VEH. NO MORE DETAILS PROVIDED",
@@ -159,8 +163,8 @@ export function ConditionAnalysis() {
       "id": 3,
       "name": "Normal",  // Or "Condition" or "Geography" - based on your logic
       "type": "Condition", // Set this based on your actual condition
-      "Total Claims": 2,
-      "Total Paid": "$38,313.97",
+      "totalClaims": 2,
+      "totalPaid": "$38,313.97",
       "table data": [
         {
           "description": "ALPINE, CA - INSD VEH WAS DRVING ON FREEWAY WHEN HE SAW CLMT DRVR MAKING SIGNS, CLMT DRVR STATED THAT INSD VEH THROW A ROCK AT CLMT VEH WINDSHIELD.",
@@ -176,8 +180,8 @@ export function ConditionAnalysis() {
       "id": 4,
       "name": "Backing", // Or "Condition" or "Geography" - based on your logic
       "type": "Condition",  // Set this based on your actual condition
-      "Total Claims": 1,
-      "Total Paid": "$7,078.24",
+      "totalClaims": 1,
+      "totalPaid": "$7,078.24",
       "table data": [
         {
           "description": "Rolla, MO.- INSD VEH BACKED UP TO CLMT VEH.",
@@ -189,8 +193,8 @@ export function ConditionAnalysis() {
       "id": 5,
       "name": "Ice", // Or "Condition" or "Geography" - based on your logic
       "type": "Condition", // Set this based on your actual condition
-      "Total Claims": 1,
-      "Total Paid": "$1,133.61",
+      "totalClaims": 1,
+      "totalPaid": "$1,133.61",
       "table data": [
         {
           "description": "MERKEL, TX- INSD DRVR LOST CONTROL OF VEH DUE TO ICE ON RD. INSD DRVR JACKKNIFED AND CAUSED INSD VEH TO STRIKE OVERPASS GAURD RAIL.",
@@ -202,8 +206,8 @@ export function ConditionAnalysis() {
       "id": 6,
       "name": "Wind", // Or "Condition" or "Geography" - based on your logic
       "type": "Condition", // Set this based on your actual condition
-      "Total Claims": 4,
-      "Total Paid": "$5.50",
+      "totalClaims": 4,
+      "totalPaid": "$5.50",
       "table data": [
         {
           "description": "CALISDA, KS-DUE TO THE HEAVY WINDS, INSD VEH ROLLED OVER.",

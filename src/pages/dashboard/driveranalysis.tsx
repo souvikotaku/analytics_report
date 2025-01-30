@@ -56,10 +56,13 @@ export function DriverAnalysis() {
       const selectedObject = selectData.find(item => item.name === selectedValue);
       if (selectedObject) {
         dispatch(setselectedObject(selectedObject));
+        localStorage.setItem('selectedObject',JSON.stringify(selectedObject))
       }
     } else {
       // Handle the case where no state is selected (e.g., reset Redux state)
       dispatch(setselectedObject(null)); // Or a default value
+      localStorage.setItem('selectedObject','')
+
     }
   };
 
@@ -115,8 +118,8 @@ export function DriverAnalysis() {
       "id": 1,
       "name": "Fahrer Mueller", // Driver's name
       "type": 'Driver',
-      "Total Claims": 3,
-      "Total Paid": "$297,811.72",
+      "totalClaims": 3,
+      "totalPaid": "$297,811.72",
       "table data": [
         {
           "description": "HOUSTON, TX - INSD VEH MADE A THREE LANE CHANGE AND WHILE IN THE PROCESS IT STRUCK CLMT VEH.",
@@ -136,8 +139,8 @@ export function DriverAnalysis() {
       "id": 2,
       "name": "Driver Smith",
       "type": 'Driver',
-      "Total Claims": 4,
-      "Total Paid": "$148,122.90",
+      "totalClaims": 4,
+      "totalPaid": "$148,122.90",
       "table data": [
         {
           "description": "DALLAS, TX.- AS PER CLMT: INSD DRVR MADE AN UNSAFE LANE SWITCH AND STRUCK CLMT VEH.",
@@ -161,8 +164,8 @@ export function DriverAnalysis() {
       "id": 3,
       "name": "Водитель Ivanov",  // Driver's name in Russian
       "type": 'Driver',
-      "Total Claims": 2,
-      "Total Paid": "$45,473.46",
+      "totalClaims": 2,
+      "totalPaid": "$45,473.46",
       "table data": [
         {
           "description": "STRATFORD, TX - INSD VEH HIT PARKED CLMT VEH",
@@ -178,8 +181,8 @@ export function DriverAnalysis() {
       "id": 4,
       "name": "Motorista Silva",
       "type": 'Driver',
-      "Total Claims": 1,
-      "Total Paid": "$38,302.47",
+      "totalClaims": 1,
+      "totalPaid": "$38,302.47",
       "table data": [
         {
           "description": "CICERO, IL - INSD VEH WAS EXITING PROPERTY AND HIT WALL.",
@@ -191,8 +194,8 @@ export function DriverAnalysis() {
       "id": 5,
       "name": "Autista Rossi",
       "type": 'Driver',
-      "Total Claims": 1,
-      "Total Paid": "$1,133.61",
+      "totalClaims": 1,
+      "totalPaid": "$1,133.61",
       "table data": [
         {
           "description": "MERKEL, TX- INSD DRVR LOST CONTROL OF VEH DUE TO ICE ON RD. INSD DRVR JACKKNIFED AND CAUSED INSD VEH TO STRIKE OVERPASS GAURD RAIL.",
@@ -204,8 +207,8 @@ export function DriverAnalysis() {
       "id": 6,
       "name": "運転手 Tanaka", // Driver's name in Japanese
       "type": 'Driver',
-      "Total Claims": 1,
-      "Total Paid": "$11.50",
+      "totalClaims": 1,
+      "totalPaid": "$11.50",
       "table data": [
         {
           "description": "ALPINE, CA - INSD VEH WAS DRVING ON FREEWAY WHEN HE SAW CLMT DRVR MAKING SIGNS, CLMT DRVR STATED THAT INSD VEH THROW A ROCK AT CLMT VEH WINDSHIELD.",
@@ -217,8 +220,8 @@ export function DriverAnalysis() {
       "id": 7,
       "name": "司机 Wang", // Driver's name in Chinese
       "type": 'Driver',
-      "Total Claims": 4,
-      "Total Paid": "$5.50",
+      "totalClaims": 4,
+      "totalPaid": "$5.50",
       "table data": [
         {
           "description": "CALISDA, KS- DUE TO THE HEAVY WINDS, INSD VEH ROLLED OVER.",
@@ -243,8 +246,8 @@ export function DriverAnalysis() {
       "id": 8,
       "name": "기사 Kim", // Driver's name in Korean
       "type": 'Driver',
-      "Total Claims": 1,
-      "Total Paid": "$5.50",
+      "totalClaims": 1,
+      "totalPaid": "$5.50",
       "table data": [
         {
           "description": "HEBER, CA- IV WAS DRIVING AND CV MERGED TO LANE AND IV HIT CV.",
@@ -256,8 +259,8 @@ export function DriverAnalysis() {
       "id": 9,
       "name": "Conductor García",
       "type": 'Driver',
-      "Total Claims": 1,
-      "Total Paid": "$0.00",
+      "totalClaims": 1,
+      "totalPaid": "$0.00",
       "table data": [
         {
           "description": "WEATHERFORD, TN-INSD VEH WAS ON LOVES TRUCK STOP PARKED, SUDDENLY CLMT VEH STRUCK INSD VEH. NO MORE DETAILS PROVIDED",
@@ -269,8 +272,8 @@ export function DriverAnalysis() {
       "id": 10,
       "name": "Chauffeur Dubois",
       "type": 'Driver',
-      "Total Claims": 2,
-      "Total Paid": "$0.00",
+      "totalClaims": 2,
+      "totalPaid": "$0.00",
       "table data": [
         {
           "description": "ELOY, AZ- INSD VEH & CLMT VEH 2 WAS PARKED IN A PARKING LOT, CLMT VEH 1 WAS ATTEMPTING TO PARK WHEN CLMT VEH 1 STRUCK INSD VEH & CLMT VEH 2 ON THE RIGHT SIDE.",

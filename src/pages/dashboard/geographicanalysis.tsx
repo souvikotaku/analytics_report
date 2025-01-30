@@ -57,10 +57,12 @@ export function GeographicAnalysis() {
       const selectedObject = selectData.find(item => item.name === selectedValue);
       if (selectedObject) {
         dispatch(setselectedObject(selectedObject));
+        localStorage.setItem('selectedObject',JSON.stringify(selectedObject))
       }
     } else {
       // Handle the case where no state is selected (e.g., reset Redux state)
       dispatch(setselectedObject(null)); // Or a default value
+      localStorage.setItem('selectedObject','')
     }
   };
 
@@ -110,8 +112,8 @@ export function GeographicAnalysis() {
       "id": 1,
       "name": "TX",
       "type": 'Geography',
-      "Total Claims": 6,
-      "Total Paid": "$345,021.27",
+      "totalClaims": 6,
+      "totalPaid": "$345,021.27",
       "table data": [
         {
           "description": "DALLAS, TX.- AS PER CLMT: INSD DRVR MADE AN UNSAFE LANE SWITCH AND STRUCK CLMT VEH.",
@@ -143,8 +145,8 @@ export function GeographicAnalysis() {
       "id": 2,
       "name": "KS",
       "type": 'Geography',
-      "Total Claims": 6,
-      "Total Paid": "$140,447.68",
+      "totalClaims": 6,
+      "totalPaid": "$140,447.68",
       "table data": [
         {
           "description": "CALISDA, KS-DUE TO THE HEAVY WINDS, INSD VEH ROLLED OVER.",
@@ -176,8 +178,8 @@ export function GeographicAnalysis() {
       "id": 3,
       "name": "IL",
       "type": 'Geography',
-      "Total Claims": 1,
-      "Total Paid": "$38,302.47",
+      "totalClaims": 1,
+      "totalPaid": "$38,302.47",
       "table data": [
         {
           "description": "CICERO, IL - INSD VEH WAS EXITING PROPERTY AND HIT WALL.",
@@ -189,8 +191,8 @@ export function GeographicAnalysis() {
       "id": 4,
       "name": "MO",
       "type": 'Geography',
-      "Total Claims": 1,
-      "Total Paid": "$7,078.24",
+      "totalClaims": 1,
+      "totalPaid": "$7,078.24",
       "table data": [
         {
           "description": "Rolla, MO.- INSD VEH BACKED UP TO CLMT VEH.",
@@ -202,8 +204,8 @@ export function GeographicAnalysis() {
       "id": 5,
       "name": "CA",
       "type": 'Geography',
-      "Total Claims": 3,
-      "Total Paid": "$17.00",
+      "totalClaims": 3,
+      "totalPaid": "$17.00",
       "table data": [
         {
           "description": "ALPINE, CA - INSD VEH WAS DRVING ON FREEWAY WHEN HE SAW CLMT DRVR MAKING SIGNS, CLMT DRVR STATED THAT INSD VEH THROW A ROCK AT CLMT VEH WINDSHIELD.",
@@ -223,8 +225,8 @@ export function GeographicAnalysis() {
       "id": 6,
       "name": "TN",
       "type": 'Geography',
-      "Total Claims": 1,
-      "Total Paid": "$0.00",
+      "totalClaims": 1,
+      "totalPaid": "$0.00",
       "table data": [
         {
           "description": "WEATHERFORD, TN-INSD VEH WAS ON LOVES TRUCK STOP PARKED, SUDDENLY CLMT VEH STRUCK INSD VEH. NO MORE DETAILS PROVIDED",
@@ -236,8 +238,8 @@ export function GeographicAnalysis() {
       "id": 7,
       "name": "AZ",
       "type": 'Geography',
-      "Total Claims": 2,
-      "Total Paid": "$0.00",
+      "totalClaims": 2,
+      "totalPaid": "$0.00",
       "table data": [
         {
           "description": "ELOY, AZ- INSD VEH & CLMT VEH 2 WAS PARKED IN A PARKING LOT, CLMT VEH 1 WAS ATTEMPTING TO PARK WHEN CLMT VEH 1 STRUCK INSD VEH & CLMT VEH 2 ON THE RIGHT SIDE.",
