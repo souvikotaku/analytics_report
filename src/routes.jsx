@@ -6,7 +6,7 @@ import {
   ServerStackIcon,
   RectangleStackIcon,
 } from "@heroicons/react/24/solid";
-import { GeographicAnalysis, DriverAnalysis,ConditionAnalysis, ClaimtypeAnalysis,PaymentHistory, Notifications } from "@/pages/dashboard";
+import { GeographicAnalysis, DriverAnalysis,ConditionAnalysis, ClaimtypeAnalysis,IndividualDetail, Notifications } from "@/pages/dashboard";
 import { SignIn, SignUp } from "@/pages/auth";
 
 const icon = {
@@ -23,6 +23,12 @@ export const routes = [
         path: "/geographicanalysis",
         element: <GeographicAnalysis />,
       },
+      // {
+      //   icon: <HomeIcon {...icon} />,
+      //   name: "Individual Detail",
+      //   path: "/geographicanalysis/*",
+      //   element: <IndividualDetail />,
+      // },
       {
         icon: <UserCircleIcon {...icon} />,
         name: "Driver Analysis",

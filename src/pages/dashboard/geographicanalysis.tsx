@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import {
@@ -17,7 +17,8 @@ import { setselectedObject } from '../../features/selectedSlice'; // Import your
 
 export function GeographicAnalysis() {
   const dispatch = useDispatch();
-
+const { pathname } = useLocation();
+  const [layout, page,inner] = pathname.split("/").filter((el) => el !== "");
   const [selectedState, setSelectedState] = useState('');
   const navigate = useNavigate();
 
@@ -40,7 +41,7 @@ export function GeographicAnalysis() {
 
   const handleJumpToGeography = () => {
     if (selectedState) {
-      navigate(`/dashboard/geographicanalysis/${selectedState}`);
+      navigate(`/dashboard/${page}/${selectedState}`);
     } else {
       alert("Please select a state.");
     }
@@ -83,6 +84,7 @@ export function GeographicAnalysis() {
     {
       "id": 1,
       "name": "TX",
+      "type": 'Geography',
       "Total Claims": 6,
       "Total Paid": "$345,021.27",
       "table data": [
@@ -115,6 +117,7 @@ export function GeographicAnalysis() {
     {
       "id": 2,
       "name": "KS",
+      "type": 'Geography',
       "Total Claims": 6,
       "Total Paid": "$140,447.68",
       "table data": [
@@ -147,6 +150,7 @@ export function GeographicAnalysis() {
     {
       "id": 3,
       "name": "IL",
+      "type": 'Geography',
       "Total Claims": 1,
       "Total Paid": "$38,302.47",
       "table data": [
@@ -159,6 +163,7 @@ export function GeographicAnalysis() {
     {
       "id": 4,
       "name": "MO",
+      "type": 'Geography',
       "Total Claims": 1,
       "Total Paid": "$7,078.24",
       "table data": [
@@ -171,6 +176,7 @@ export function GeographicAnalysis() {
     {
       "id": 5,
       "name": "CA",
+      "type": 'Geography',
       "Total Claims": 3,
       "Total Paid": "$17.00",
       "table data": [
@@ -191,6 +197,7 @@ export function GeographicAnalysis() {
     {
       "id": 6,
       "name": "TN",
+      "type": 'Geography',
       "Total Claims": 1,
       "Total Paid": "$0.00",
       "table data": [
@@ -203,6 +210,7 @@ export function GeographicAnalysis() {
     {
       "id": 7,
       "name": "AZ",
+      "type": 'Geography',
       "Total Claims": 2,
       "Total Paid": "$0.00",
       "table data": [

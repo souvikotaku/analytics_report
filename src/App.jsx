@@ -1,15 +1,17 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import { Dashboard, Auth } from "@/layouts";
-import PaymentHistory from './pages/dashboard/paymentsHistory'; // Import the component for analysis
+import { Routes, Route, Navigate,useLocation } from "react-router-dom";
+import { Dashboard} from "@/layouts";
+import IndividualDetail from './pages/dashboard/individualDetail'; // Import the component for analysis
 
 
 function App() {
+
+  const { pathname } = useLocation();
+    const [layout, page,inner] = pathname.split("/").filter((el) => el !== "");
   return (
     <Routes>
       <Route path="/dashboard/*" element={<Dashboard />} />
-      <Route path="/auth/*" element={<Auth />} />
       <Route path="*" element={<Navigate to="/dashboard/geographicanalysis" replace />} />
-      <Route path="/dashboard/geographicanalysis/:state" element={<PaymentHistory />} />
+      <Route path={`/dashboard/${page}/:state`} element={<IndividualDetail />} />
     </Routes>
   );
 }

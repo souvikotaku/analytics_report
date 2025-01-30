@@ -1,4 +1,4 @@
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import {
   Navbar,
   Typography,
@@ -27,10 +27,14 @@ import {
 } from "@/context";
 
 export function DashboardNavbar() {
+    const navigate = useNavigate();
+  
   const [controller, dispatch] = useMaterialTailwindController();
   const { fixedNavbar, openSidenav } = controller;
   const { pathname } = useLocation();
-  const [layout, page] = pathname.split("/").filter((el) => el !== "");
+  const [layout, page,inner] = pathname.split("/").filter((el) => el !== "");
+
+  console.log('newpatthname',pathname.split("/").filter((el) => el !== ""))
 
   return (
     <Navbar
@@ -46,11 +50,7 @@ export function DashboardNavbar() {
       <div className="flex flex-col-reverse justify-between gap-6 md:flex-row md:items-center">
         <div className="capitalize">
           <Breadcrumbs
-          style={{
-            pointerEvents: 'none',
-            cursor: 'pointer',
-            
-          }}
+          
             className={`bg-transparent p-0 transition-all ${
               fixedNavbar ? "mt-1" : ""
             }`}
@@ -61,8 +61,11 @@ export function DashboardNavbar() {
                 color="blue-gray"
                 className="font-normal opacity-50 transition-all hover:text-blue-500 hover:opacity-100"
                 style={{
-                  color: '#ffb570'
+                  color: '#ffb570',
+                  pointerEvents: 'none',
+                  cursor: 'pointer'
                 }}
+               
               >
                 {layout}
               </Typography>
@@ -72,11 +75,32 @@ export function DashboardNavbar() {
               color="blue-gray"
               className="font-normal"
               style={{
-                color: '#ffb570'
+                color: '#ffb570',
+                pointerEvents: !inner && 'none',
+              }}
+              onClick={()=>{
+                if(inner){
+                    navigate(`/dashboard/${page}`);
+                }
               }}
             >
               {page}
             </Typography>
+            {
+              inner &&  (
+                <Typography
+              variant="small"
+              color="blue-gray"
+              className="font-normal"
+              style={{
+                color: '#ffb570',
+                pointerEvents: 'none',
+              }}
+            >
+              {inner}
+            </Typography>
+              )
+            }
           </Breadcrumbs>
           {/* <Typography variant="h6" color="blue-gray">
             {page}

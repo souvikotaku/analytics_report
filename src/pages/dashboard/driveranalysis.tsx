@@ -40,7 +40,7 @@ export function DriverAnalysis() {
   
     const handleJumpToGeography = () => {
       if (selectedState) {
-        navigate(`/dashboard/geographicanalysis/${selectedState}`);
+        navigate(`/dashboard/driveranalysis/${selectedState}`);
       } else {
         alert("Please select a state.");
       }
@@ -89,6 +89,7 @@ const selectData = [
   {
     "id": 1,
     "name": "Fahrer Mueller", // Driver's name
+    "type": 'Driver',
     "Total Claims": 3,
     "Total Paid": "$297,811.72",
     "table data": [
@@ -109,6 +110,7 @@ const selectData = [
   {
     "id": 2,
     "name": "Driver Smith",
+    "type": 'Driver',
     "Total Claims": 4,
     "Total Paid": "$148,122.90",
     "table data": [
@@ -133,6 +135,7 @@ const selectData = [
   {
     "id": 3,
     "name": "Водитель Ivanov",  // Driver's name in Russian
+    "type": 'Driver',
     "Total Claims": 2,
     "Total Paid": "$45,473.46",
     "table data": [
@@ -149,6 +152,7 @@ const selectData = [
   {
     "id": 4,
     "name": "Motorista Silva",
+    "type": 'Driver',
     "Total Claims": 1,
     "Total Paid": "$38,302.47",
     "table data": [
@@ -161,6 +165,7 @@ const selectData = [
   {
     "id": 5,
     "name": "Autista Rossi",
+    "type": 'Driver',
     "Total Claims": 1,
     "Total Paid": "$1,133.61",
     "table data": [
@@ -173,6 +178,7 @@ const selectData = [
   {
     "id": 6,
     "name": "運転手 Tanaka", // Driver's name in Japanese
+    "type": 'Driver',
     "Total Claims": 1,
     "Total Paid": "$11.50",
     "table data": [
@@ -185,6 +191,7 @@ const selectData = [
   {
     "id": 7,
     "name": "司机 Wang", // Driver's name in Chinese
+    "type": 'Driver',
     "Total Claims": 4,
     "Total Paid": "$5.50",
     "table data": [
@@ -210,6 +217,7 @@ const selectData = [
   {
     "id": 8,
     "name": "기사 Kim", // Driver's name in Korean
+    "type": 'Driver',
     "Total Claims": 1,
     "Total Paid": "$5.50",
     "table data": [
@@ -222,6 +230,7 @@ const selectData = [
   {
     "id": 9,
     "name": "Conductor García",
+    "type": 'Driver',
     "Total Claims": 1,
     "Total Paid": "$0.00",
     "table data": [
@@ -234,6 +243,7 @@ const selectData = [
   {
     "id": 10,
     "name": "Chauffeur Dubois",
+    "type": 'Driver',
     "Total Claims": 2,
     "Total Paid": "$0.00",
     "table data": [
