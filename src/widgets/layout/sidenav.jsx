@@ -49,11 +49,12 @@ export function Sidenav({ brandImg, brandName, routes }) {
 
             style={{
 
-              width: '90%'
+              width: '90%',
+              filter:showLightnew === true && 'invert(1)'
 
             }}
 
-            src="/img/strativelogo.png" alt="Car Wash" />
+            src="/img/strativelogo.png" alt="Car Wash"  />
 
         </Link>
         <IconButton
