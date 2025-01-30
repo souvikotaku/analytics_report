@@ -26,10 +26,7 @@ export function Dashboard() {
   const { sidenavType } = controller;
 
  
-  // const handleThemeToggle = () => {
-  //   // setShowLight(!showLight);
-  //   dispatchevent(setshowlightmode(!showLightnew))
-  // };
+ 
   return (
     <div className="min-h-screen bg-blue-gray-50/50" style={{
       backgroundColor: showLightnew === true ? 'white' : '#17181d'
@@ -65,25 +62,7 @@ export function Dashboard() {
           <Footer />
         </div>
       </div>
-      {/* <p
-        className="newwwwwwww"
-        onClick={handleThemeToggle}
-        style={{
-          height: '40px',
-          width: '40px',
-          backgroundColor: 'yellow',
-          position: 'fixed',
-          top: 0,
-          right: 0,
-          cursor: 'pointer',
-          zIndex: 200,
-          display: 'flex',
-          alignItems: 'center', // Center vertically
-          justifyContent: 'center', // Center horizontally
-        }}
-      >
-        {showLightnew === true ? 'Show Dark' : 'Show Light'} 
-      </p> */}
+     
     </div>
   );
 }

@@ -13,6 +13,7 @@ import {
   Avatar,
 } from "@material-tailwind/react";
 import { useSelector, useDispatch } from "react-redux";
+import { FiSun,FiMoon  } from "react-icons/fi";
 
 
 import {
@@ -140,23 +141,28 @@ export function DashboardNavbar() {
         </div>
       </div>
       <p
-        className="newwwwwwww"
         onClick={handleThemeToggle}
+        title={showLightnew ? "Switch to Dark Mode" : "Switch to Light Mode"} // Tooltip
         style={{
-          height: '40px',
-          width: '40px',
-          backgroundColor: 'yellow',
-          position: 'fixed',
-          top: 0,
+          height: "50px",
+          width: "50px",
+          backgroundColor: showLightnew === true ? 'black' :"white",
+          position: "fixed",
+          marginRight: "20px",
+          marginBottom: "20px",
+          bottom: 0,
           right: 0,
-          cursor: 'pointer',
+          cursor: "pointer",
           zIndex: 200,
-          display: 'flex',
-          alignItems: 'center', // Center vertically
-          justifyContent: 'center', // Center horizontally
+          display: "flex",
+          alignItems: "center", // Center vertically
+          justifyContent: "center", // Center horizontally
+          borderRadius: "40px",
+          boxShadow: "4px 4px 10px rgba(0, 0, 0, 0.2), -4px -4px 10px rgba(255, 255, 255, 0.6)", // Outer shadow
+          insetShadow: "inset 2px 2px 6px rgba(0, 0, 0, 0.1), inset -2px -2px 6px rgba(255, 255, 255, 0.7)", // Inner shadow
         }}
       >
-        {showLightnew === true ? 'Show Dark' : 'Show Light'} 
+        {showLightnew === true ? <FiMoon color={"white"} size={30} /> : <FiSun color={"black"} size={30} />} 
       </p>
     </Navbar>
   );
