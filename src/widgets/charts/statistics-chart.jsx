@@ -7,12 +7,17 @@ import {
 } from "@material-tailwind/react";
 import PropTypes from "prop-types";
 import Chart from "react-apexcharts";
+import { useSelector } from 'react-redux';
+
 
 export function StatisticsChart({ color, chart, title, description, footer }) {
+
+  const showLightnew = useSelector((state) => state.selected.showlightmode); // Access Redux state
+
   return (
     <Card className="border border-blue-gray-100 shadow-sm" style={{
-      background: '#21232d',
-    border: '1px solid #ffa857'
+      background: showLightnew === true ? 'white' : '#21232d',
+      border: showLightnew === true ? '1px solid black' : '1px solid #ffa857'
     }}>
       <CardHeader variant="gradient" color={color} floated={false} shadow={false} style={{
         background: 'transparent'

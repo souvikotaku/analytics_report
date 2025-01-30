@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate,useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 
 import {
   driveranalysisChartsData
@@ -19,10 +19,12 @@ export function DriverAnalysis() {
   const dispatch = useDispatch();
   const [selectedState, setSelectedState] = useState('');
   const navigate = useNavigate();
+  const showLightnew = useSelector((state: { selected: { showlightmode: boolean } }) => state.selected.showlightmode); // Access Redux state
 
   interface StateChangeEvent extends React.ChangeEvent<HTMLSelectElement> { }
 
   const handleStateChange = (event: StateChangeEvent) => {
+
     const selectedValue = event.target.value;
     setSelectedState(selectedValue);
 
@@ -271,7 +273,7 @@ export function DriverAnalysis() {
           onPointerEnterCapture={() => { }}
           onPointerLeaveCapture={() => { }}
           style={{
-            color: '#ffb570',
+            color: showLightnew === true ? 'black' :'#ffb570',
             fontWeight: 'bold',
             fontSize: '30px'
           }}>
@@ -286,7 +288,7 @@ export function DriverAnalysis() {
           onPointerEnterCapture={() => { }}
           onPointerLeaveCapture={() => { }}
           style={{
-            color: '#ffb570'
+            color: showLightnew === true ? 'black' :'#ffb570'
           }}>
           Driver Recommendations
         </Typography>
@@ -295,7 +297,7 @@ export function DriverAnalysis() {
           onPointerEnterCapture={() => { }}
           onPointerLeaveCapture={() => { }}
           style={{
-            color: '#7f8292',
+            color: showLightnew === true ? 'black' :'#7f8292',
             fontWeight: 'bold'
           }}
         >
@@ -306,7 +308,7 @@ export function DriverAnalysis() {
           onPointerEnterCapture={() => { }}
           onPointerLeaveCapture={() => { }}
           style={{
-            color: '#7f8292',
+            color: showLightnew === true ? 'black' :'#7f8292',
           }}
         >
           {`Fahrer Mueller shows significantly higher claim costs. Consider reviewing their driving record and safety
@@ -318,7 +320,7 @@ export function DriverAnalysis() {
           onPointerEnterCapture={() => { }}
           onPointerLeaveCapture={() => { }}
           style={{
-            color: '#7f8292',
+            color: showLightnew === true ? 'black' :'#7f8292',
             fontWeight: 'bold',
             marginTop: '10px'
           }}
@@ -330,7 +332,7 @@ export function DriverAnalysis() {
           onPointerEnterCapture={() => { }}
           onPointerLeaveCapture={() => { }}
           style={{
-            color: '#7f8292',
+            color: showLightnew === true ? 'black' :'#7f8292',
           }}
         >
           {`The highest total claim cost is observed for Fahrer Mueller ($297,811.72, 100th percentile), Driver Smith
@@ -348,7 +350,7 @@ export function DriverAnalysis() {
           onPointerEnterCapture={() => { }}
           onPointerLeaveCapture={() => { }}
           style={{
-            color: '#ffb570'
+            color: showLightnew === true ? 'black' :'#ffb570'
           }}
         >
           Driver Charts
@@ -383,7 +385,7 @@ export function DriverAnalysis() {
           onPointerEnterCapture={() => { }}
           onPointerLeaveCapture={() => { }}
           style={{
-            color: '#ffb570'
+            color: showLightnew === true ? 'black' :'#ffb570'
           }}
         >
           Driver Performance Summary
@@ -399,7 +401,7 @@ export function DriverAnalysis() {
           onPointerEnterCapture={() => { }}
           onPointerLeaveCapture={() => { }}
           style={{
-            color: '#ffb570'
+            color:showLightnew === true ? 'black' : '#ffb570'
           }}
         >
           Driver Summary
@@ -413,12 +415,12 @@ export function DriverAnalysis() {
           onChange={handleStateChange}
           className=" rounded-md px-4 py-2 focus:outline-none "
           style={{
-            border: '1px solid #ffa857',
-            color: '#ffa857',
-            background: 'rgb(23, 24, 29)',
+            border: showLightnew === true ? '1px solid black' : '1px solid #ffa857',
+            color:showLightnew === true ? 'black' : '#ffa857',
+            background: showLightnew === true ? 'white' : 'rgb(23, 24, 29)',
             WebkitAppearance: 'none', // Try to remove default appearance
             appearance: 'none',       // Standard way to remove appearance
-            backgroundColor: 'rgb(23, 24, 29)', // Set background color
+            backgroundColor:showLightnew === true ? 'white' : 'rgb(23, 24, 29)', // Set background color
             padding: '8px', // Adjust padding as needed
             borderRadius: '4px', // Add rounded corners if desired
           }}
@@ -434,7 +436,7 @@ export function DriverAnalysis() {
         <button
           onClick={handleJumpToGeography}
           disabled={!selectedState}
-          className={`relative inline-flex items-center justify-center mr-2 overflow-hidden text-sm font-medium rounded-lg group focus:ring-4 focus:outline-none dark:border-yellow-500 dark:hover:bg-yellow-600 dark:hover:border-yellow-700 dark:focus:ring-yellow-800 custom-button`} // Add custom-button class
+          className={showLightnew === true ?  `relative inline-flex items-center justify-center mr-2 overflow-hidden text-sm font-medium rounded-lg group focus:ring-4 focus:outline-none dark:border-yellow-500 dark:hover:bg-yellow-600 dark:hover:border-yellow-700 dark:focus:ring-yellow-800 custom-button1` : `relative inline-flex items-center justify-center mr-2 overflow-hidden text-sm font-medium rounded-lg group focus:ring-4 focus:outline-none dark:border-yellow-500 dark:hover:bg-yellow-600 dark:hover:border-yellow-700 dark:focus:ring-yellow-800 custom-button`}
         >
           <span className="relative px-5 py-2.5 transition-all ease-in duration-75 rounded-md group-hover:bg-opacity-0">
             Jump to Driver

@@ -14,3 +14,20 @@
     opacity: 50%;
     cursor: not-allowed;
   }
+
+  .custom-button1 {
+    border: 1px solid black;
+    color: black;
+    background: transparent;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  
+  .custom-button1:hover {
+    background-color: black;
+    color: white;
+  }
+  
+  .custom-button1:disabled {
+    opacity: 50%;
+    cursor: not-allowed;
+  }

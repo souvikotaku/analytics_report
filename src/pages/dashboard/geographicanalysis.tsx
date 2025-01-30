@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate,useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   statisticsChartsData
@@ -17,12 +17,13 @@ import { setselectedObject } from '../../features/selectedSlice'; // Import your
 
 export function GeographicAnalysis() {
   const dispatch = useDispatch();
-const { pathname } = useLocation();
-  const [layout, page,inner] = pathname.split("/").filter((el) => el !== "");
+  const { pathname } = useLocation();
+  const [layout, page, inner] = pathname.split("/").filter((el) => el !== "");
   const [selectedState, setSelectedState] = useState('');
   const navigate = useNavigate();
+  const showLightnew = useSelector((state: { selected: { showlightmode: boolean } }) => state.selected.showlightmode); // Access Redux state
 
-  interface StateChangeEvent extends React.ChangeEvent<HTMLSelectElement> {}
+  interface StateChangeEvent extends React.ChangeEvent<HTMLSelectElement> { }
 
   const handleStateChange = (event: StateChangeEvent) => {
     const selectedValue = event.target.value;
@@ -69,7 +70,7 @@ const { pathname } = useLocation();
     ["Median", 2.0, "$7,078.24"],
     ["Std_Dev", 2.1, "$119,536.30"],
   ];
-  
+
   const data = [
     ["TX", 6, "$345,021.27", "$57,503.54", "30.0%", "65.0%", "PD(4), BI(2)", "+2.25σ"],
     ["KS", 6, "$140,447.68", "$23,407.95", "30.0%", "26.5%", "BI(3), MEDICAL PAYMENTS(2), PD(1)", "+0.54σ"],
@@ -224,102 +225,102 @@ const { pathname } = useLocation();
         }
       ]
     }
-    
+
   ]
 
 
   return (
     <div className="mt-6">
       <div>
-      <Typography  
-        variant="h6"
+        <Typography
+          variant="h6"
           color="blue-gray"
           className="mb-3 mt-8"
           placeholder=""
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
+          onPointerEnterCapture={() => { }}
+          onPointerLeaveCapture={() => { }}
           style={{
-            color: '#ffb570',
+            color: showLightnew === true ? 'black' : '#ffb570',
             fontWeight: 'bold',
             fontSize: '30px'
           }}>
-Geography Analysis
+          Geography Analysis
         </Typography>
-        <Typography  
-        variant="h6"
+        <Typography
+          variant="h6"
           color="blue-gray"
           className="mb-3 mt-8"
           placeholder=""
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
+          onPointerEnterCapture={() => { }}
+          onPointerLeaveCapture={() => { }}
           style={{
-            color: '#ffb570'
+            color: showLightnew === true ? 'black' : '#ffb570'
           }}>
-Geography Recommendations
+          Geography Recommendations
         </Typography>
         <Typography
           placeholder=""
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
+          onPointerEnterCapture={() => { }}
+          onPointerLeaveCapture={() => { }}
           style={{
-            color: '#7f8292',
+            color: showLightnew === true ? 'black' : '#7f8292',
             fontWeight: 'bold'
           }}
         >
-        Geography: Review High-Cost State (z-score: 2.25σ)
+          Geography: Review High-Cost State (z-score: 2.25σ)
         </Typography>
         <Typography
           placeholder=""
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
+          onPointerEnterCapture={() => { }}
+          onPointerLeaveCapture={() => { }}
           style={{
-            color: '#7f8292',
+            color: showLightnew === true ? 'black' : '#7f8292',
           }}
         >
-        {`Consider reviewing claims handling procedures in TX, where total paid claims are notably (>95% confidence) above average (z-score: 2.25σ).`}
+          {`Consider reviewing claims handling procedures in TX, where total paid claims are notably (>95% confidence) above average (z-score: 2.25σ).`}
         </Typography>
         <Typography
           placeholder=""
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
+          onPointerEnterCapture={() => { }}
+          onPointerLeaveCapture={() => { }}
           style={{
-            color: '#7f8292',
+            color: showLightnew === true ? 'black' : '#7f8292',
             fontWeight: 'bold',
             marginTop: '10px'
           }}
         >
-         Geography: Cost Efficiency Analysis (Top 3 states by average claim cost (with percentile ranking))
+          Geography: Cost Efficiency Analysis (Top 3 states by average claim cost (with percentile ranking))
         </Typography>
         <Typography
           placeholder=""
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
+          onPointerEnterCapture={() => { }}
+          onPointerLeaveCapture={() => { }}
           style={{
-            color: '#7f8292',
+            color: showLightnew === true ? 'black' : '#7f8292',
           }}
         >
-        {`The highest average cost per claim is observed in TX ($57,503.54, 100th percentile), IL ($38,302.47, 85th
+          {`The highest average cost per claim is observed in TX ($57,503.54, 100th percentile), IL ($38,302.47, 85th
  percentile), KS ($23,407.95, 71th percentile). This may warrant investigation of claims handling efficiency in
  these regions.`}
         </Typography>
       </div>
-      
+
       <div>
         <Typography
           variant="h6"
           color="blue-gray"
           className="mb-3 mt-8"
           placeholder=""
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
+          onPointerEnterCapture={() => { }}
+          onPointerLeaveCapture={() => { }}
           style={{
-            color: '#ffb570'
+            color: showLightnew === true ? 'black' : '#ffb570'
           }}
         >
           Geography Charts
         </Typography>
       </div>
-    
+
       {/* <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3"> */}
       <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-2 grid-auto-rows-auto">
 
@@ -327,7 +328,7 @@ Geography Recommendations
           <StatisticsChart
             key={props.title}
             {...props}
-            
+
           />
         ))}
       </div>
@@ -337,10 +338,10 @@ Geography Recommendations
           color="blue-gray"
           className="mb-3 mt-8"
           placeholder=""
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
+          onPointerEnterCapture={() => { }}
+          onPointerLeaveCapture={() => { }}
           style={{
-            color: '#ffb570'
+            color: showLightnew === true ? 'black' : '#ffb570'
           }}
         >
           Geography Performance Summary
@@ -353,51 +354,51 @@ Geography Recommendations
           color="blue-gray"
           className="mb-3 mt-8"
           placeholder=""
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
+          onPointerEnterCapture={() => { }}
+          onPointerLeaveCapture={() => { }}
           style={{
-            color: '#ffb570'
+            color: showLightnew === true ? 'black' : '#ffb570'
           }}
         >
           Geography Summary
         </Typography>
         <Table columns={columns} data={data} />
       </div>
-      
-      <div className="flex items-center space-x-4 mt-6 mb-6">
-      <select
-        value={selectedState}
-        onChange={handleStateChange}
-        className=" rounded-md px-4 py-2 focus:outline-none "
-style={{
-  border: '1px solid #ffa857',
-  color: '#ffa857',
-  background: 'rgb(23, 24, 29)',
-  WebkitAppearance: 'none', // Try to remove default appearance
-  appearance: 'none',       // Standard way to remove appearance
-  backgroundColor: 'rgb(23, 24, 29)', // Set background color
-  padding: '8px', // Adjust padding as needed
-  borderRadius: '4px', // Add rounded corners if desired
-}}
-      >
-        
-        <option value="" disabled>Select Geography</option> {/* Default option */}
-        {selectData.map(item => ( // Dynamically render options
-        <option key={item.id} value={item.name}>{item.name}</option>
-      ))}
-      </select>
 
-   
-    <button
- onClick={handleJumpToGeography}
- disabled={!selectedState}
- className={`relative inline-flex items-center justify-center mr-2 overflow-hidden text-sm font-medium rounded-lg group focus:ring-4 focus:outline-none dark:border-yellow-500 dark:hover:bg-yellow-600 dark:hover:border-yellow-700 dark:focus:ring-yellow-800 custom-button`} // Add custom-button class
->
-  <span className="relative px-5 py-2.5 transition-all ease-in duration-75 rounded-md group-hover:bg-opacity-0">
-    Jump to Geography
-  </span>
-</button>
-    </div>
+      <div className="flex items-center space-x-4 mt-6 mb-6">
+        <select
+          value={selectedState}
+          onChange={handleStateChange}
+          className=" rounded-md px-4 py-2 focus:outline-none "
+          style={{
+            border: showLightnew === true ? '1px solid black' : '1px solid #ffa857',
+            color:showLightnew === true ? 'black' : '#ffa857',
+            background: showLightnew === true ? 'white' : 'rgb(23, 24, 29)',
+            WebkitAppearance: 'none', // Try to remove default appearance
+            appearance: 'none',       // Standard way to remove appearance
+            backgroundColor:showLightnew === true ? 'white' : 'rgb(23, 24, 29)', // Set background color
+            padding: '8px', // Adjust padding as needed
+            borderRadius: '4px', // Add rounded corners if desired
+          }}
+        >
+
+          <option value="" disabled>Select Geography</option> {/* Default option */}
+          {selectData.map(item => ( // Dynamically render options
+            <option key={item.id} value={item.name}>{item.name}</option>
+          ))}
+        </select>
+
+
+        <button
+          onClick={handleJumpToGeography}
+          disabled={!selectedState}
+          className={showLightnew === true ?  `relative inline-flex items-center justify-center mr-2 overflow-hidden text-sm font-medium rounded-lg group focus:ring-4 focus:outline-none dark:border-yellow-500 dark:hover:bg-yellow-600 dark:hover:border-yellow-700 dark:focus:ring-yellow-800 custom-button1` : `relative inline-flex items-center justify-center mr-2 overflow-hidden text-sm font-medium rounded-lg group focus:ring-4 focus:outline-none dark:border-yellow-500 dark:hover:bg-yellow-600 dark:hover:border-yellow-700 dark:focus:ring-yellow-800 custom-button`}
+        >
+          <span className="relative px-5 py-2.5 transition-all ease-in duration-75 rounded-md group-hover:bg-opacity-0">
+            Jump to Geography
+          </span>
+        </button>
+      </div>
     </div>
   );
 }

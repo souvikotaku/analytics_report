@@ -23,11 +23,12 @@ import { useMaterialTailwindController, setOpenConfigurator } from "@/context";
 
 
 export function IndividualDetail() {
-  const [controller, dispatch] = useMaterialTailwindController();
+  const controller = useMaterialTailwindController();
 
   const { sidenavType } = controller;
 
-  const selectedDataObject = useSelector(state => state.selected.selectedObject); // Replace yourSliceName
+  const selectedDataObject = useSelector((state: any) => state.selected.selectedObject); // Replace yourSliceName
+  const showLightnew = useSelector((state: { selected: { showlightmode: boolean } }) => state.selected.showlightmode); // Access Redux state
 
   console.log('selectedDataObject', selectedDataObject)
 
@@ -43,14 +44,27 @@ export function IndividualDetail() {
   //   ["Median", "$7,078.24"],
   // ];
 
-  const geoperfdata = selectedDataObject?.["table data"]?.map(item => [
+  interface TableDataItem {
+    description: string;
+    totalpaid: string;
+  }
+
+  interface SelectedDataObject {
+    type: string;
+    name: string;
+    "Total Claims": number;
+    "Total Paid": string;
+    "table data": TableDataItem[];
+  }
+
+  const geoperfdata: [string, string][] = (selectedDataObject?.["table data"]?.map((item: TableDataItem) => [
     item.description,
     item.totalpaid
-  ]) || [];
+  ]) || []);
 
   return (
     <div className="min-h-screen bg-blue-gray-50/50" style={{
-      backgroundColor: '#17181d'
+      backgroundColor: showLightnew === true ? 'white' :'#17181d'
     }}>
       <Sidenav
         routes={routes}
@@ -71,7 +85,7 @@ export function IndividualDetail() {
               onPointerEnterCapture={() => { }}
               onPointerLeaveCapture={() => { }}
               style={{
-                color: '#ffb570',
+                color: showLightnew === true ? 'black' :'#ffb570',
                 fontWeight: 'bold',
                 fontSize: '30px'
               }}>
@@ -84,7 +98,7 @@ export function IndividualDetail() {
               onPointerEnterCapture={() => { }}
               onPointerLeaveCapture={() => { }}
               style={{
-                color: '#7f8292',
+                color: showLightnew === true ? 'black' :'#7f8292',
               }}
             >
               {`Total Claims: ${selectedDataObject?.["Total Claims"]}`}
@@ -94,7 +108,7 @@ export function IndividualDetail() {
               onPointerEnterCapture={() => { }}
               onPointerLeaveCapture={() => { }}
               style={{
-                color: '#7f8292',
+                color: showLightnew === true ? 'black' :'#7f8292',
               }}
             >
               {` Total Paid: ${selectedDataObject?.["Total Paid"]}`}

@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import { Link, NavLink } from "react-router-dom";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { useSelector } from "react-redux";
+
 import {
   Avatar,
   Button,
@@ -10,6 +12,8 @@ import {
 import { useMaterialTailwindController, setOpenSidenav } from "@/context";
 
 export function Sidenav({ brandImg, brandName, routes }) {
+  const showLightnew = useSelector((state) => state.selected.showlightmode); // Access Redux state
+
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavColor, sidenavType, openSidenav } = controller;
   const sidenavTypes = {
@@ -20,13 +24,12 @@ export function Sidenav({ brandImg, brandName, routes }) {
 
   return (
     <aside
-      className={`${sidenavTypes[sidenavType]} ${
-        openSidenav ? "translate-x-0" : "-translate-x-80"
-      } fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 border border-blue-gray-100`}
-    style={{
-      backgroundColor: "#17181d",
-      border: '1px solid #ffa857'
-    }}
+      className={`${sidenavTypes[sidenavType]} ${openSidenav ? "translate-x-0" : "-translate-x-80"
+        } fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 border border-blue-gray-100`}
+      style={{
+        backgroundColor: showLightnew === true ? 'white' :"#17181d",
+        border:showLightnew === true ? '1px solid black' : '1px solid #ffa857'
+      }}
     >
       <div
         className={`relative`}
@@ -34,7 +37,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
         <Link to="/" className="py-6 px-8 text-center" style={{
           justifyContent: 'center',
           display: 'flex'
-      
+
         }}>
           {/* <Typography
             variant="h6"
@@ -42,15 +45,15 @@ export function Sidenav({ brandImg, brandName, routes }) {
           >
             {brandName}
           </Typography> */}
-          <img 
-          
-          style={{
-  
-  width: '90%'
+          <img
 
-}} 
+            style={{
 
-src="/img/strativelogo.png" alt="Car Wash" />
+              width: '90%'
+
+            }}
+
+            src="/img/strativelogo.png" alt="Car Wash" />
 
         </Link>
         <IconButton
@@ -73,7 +76,7 @@ src="/img/strativelogo.png" alt="Car Wash" />
                   variant="small"
                   color={sidenavType === "dark" ? "white" : "blue-gray"}
                   className="font-black uppercase opacity-75"
-                  
+
                 >
                   {title}
                 </Typography>
@@ -89,10 +92,10 @@ src="/img/strativelogo.png" alt="Car Wash" />
                         isActive
                           ? sidenavColor
                           : sidenavType === "dark"
-                          ? "white"
-                          : "blue-gray"
+                            ? "white"
+                            :showLightnew === true ? 'black' : "blue-gray"
                       }
-                      
+
                       className="flex items-center gap-4 px-4 capitalize"
                       fullWidth
                     >
@@ -101,7 +104,7 @@ src="/img/strativelogo.png" alt="Car Wash" />
                         color="inherit"
                         className="font-medium capitalize"
                         style={{
-                          color:isActive ? 'white' : "#7f8292"
+                          color: isActive ? 'white' : showLightnew === true ? 'black' : "#7f8292"
                         }}
                       >
                         {name}
