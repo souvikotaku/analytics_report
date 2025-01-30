@@ -97,7 +97,7 @@ export function DashboardNavbar() {
                 pointerEvents: 'none',
               }}
             >
-              {inner}
+              {decodeURIComponent(inner)}
             </Typography>
               )
             }
