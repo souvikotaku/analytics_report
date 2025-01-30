@@ -9,8 +9,14 @@ import {
     Progress,
   } from "@material-tailwind/react";
   import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
+  import {useSelector } from 'react-redux';
+
   
   export function PaymentHistory() {
+    const selectedDataObject = useSelector(state => state.selected.selectedObject); // Replace yourSliceName
+
+    console.log('selectedDataObject',selectedDataObject)
+
     const paymentTableData = [
       { id: 1, name: "John Doe", date: "2024-10-15",status: 'Successful', amount: 200 },
       { id: 2, name: "Jane Smith", date: "2024-10-16",status: 'Cancelled', amount: 150 },

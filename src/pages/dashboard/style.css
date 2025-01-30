@@ -1,0 +1,16 @@
+.custom-button {
+    border: 1px solid #ffa857;
+    color: #ffa857;
+    background: transparent;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  
+  .custom-button:hover {
+    background-color: #ffa857;
+    color: white;
+  }
+  
+  .custom-button:disabled {
+    opacity: 50%;
+    cursor: not-allowed;
+  }

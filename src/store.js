@@ -2,11 +2,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 // Import your slice(s) here
-import categoriesReducer from "./features/categoriesSlice";
+import selectedReducer from "./features/selectedSlice";
 
 const store = configureStore({
   reducer: {
-    categories: categoriesReducer,  // Add your slice reducers here
+    selected: selectedReducer,  // Add your slice reducers here
   },
 });
 

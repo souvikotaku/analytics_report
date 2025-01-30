@@ -120,7 +120,7 @@ src="/img/strativelogo.png" alt="Car Wash" />
 
 Sidenav.defaultProps = {
   brandImg: "/img/logo-ct.png",
-  brandName: "Morpheus Carwash",
+  brandName: "Strative",
 };
 
 Sidenav.propTypes = {
