@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { motion, useInView } from "framer-motion";
+
 import {
   claimtypeanalysisChartsData
 } from "@/data";
@@ -20,6 +22,31 @@ export function ClaimtypeAnalysis() {
   const [selectedState, setSelectedState] = useState('');
   const navigate = useNavigate();
   const showLightnew = useSelector((state: { selected: { showlightmode: boolean } }) => state.selected.showlightmode); // Access Redux state
+
+  const tableRef = useRef(null); // Create a ref for the table container
+  const tableRef2 = useRef(null); // Create a ref for the table container
+  const isInView = useInView(tableRef, { once: true }); // Use useInView hook
+  const isInView2 = useInView(tableRef2, { once: true });
+
+  const containerVariants = {
+    hidden: { opacity: 0 }, // Initially hidden
+    visible: { opacity: 1, transition: { duration: 0.7, ease: "easeInOut", staggerChildren: 0.2 } }, // Staggered animation
+  };
+
+  const chartVariants = {
+    hiddenLeft: { x: -100, opacity: 0 }, // Slide from left
+    hiddenRight: { x: 100, opacity: 0 }, // Slide from right
+    visible: { x: 0, opacity: 1, transition: { duration: 0.7, ease: "easeInOut" } },
+  };
+  const tableVariants = {
+    hidden: { x: -100, opacity: 0 }, // Slide from left
+    visible: { x: 0, opacity: 1, transition: { duration: 0.8, ease: "easeInOut" } }, // Adjust duration and easing as needed
+  };
+  const textVariants = {
+    hidden: { y: -50, opacity: 0 }, // Start above the viewport
+    visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeInOut" } }, // Adjust duration and easing
+  };
+
 
   interface StateChangeEvent extends React.ChangeEvent<HTMLSelectElement> { }
 
@@ -190,61 +217,69 @@ export function ClaimtypeAnalysis() {
 
   return (
     <div className="mt-6">
-      <div>
-        <Typography
-          variant="h6"
-          color="blue-gray"
-          className="mb-3 mt-8"
-          placeholder=""
-          onPointerEnterCapture={() => { }}
-          onPointerLeaveCapture={() => { }}
-          style={{
-            color: showLightnew === true ? 'black' :'#ffb570',
-            fontWeight: 'bold',
-            fontSize: '30px'
-          }}>
-          Claim Type Analysis
+      <motion.section
+        variants={textVariants}
+        initial="hidden"
+        animate="visible"
+        viewport={{ once: true }} // Only animate once when in viewport (optional)
 
-        </Typography>
-        <Typography
-          variant="h6"
-          color="blue-gray"
-          className="mb-3 mt-8"
-          placeholder=""
-          onPointerEnterCapture={() => { }}
-          onPointerLeaveCapture={() => { }}
-          style={{
-            color:showLightnew === true ? 'black' : '#ffb570'
-          }}>
-          Claim Type Recommendations
-        </Typography>
-        <Typography
-          placeholder=""
-          onPointerEnterCapture={() => { }}
-          onPointerLeaveCapture={() => { }}
-          style={{
-            color:showLightnew === true ? 'black' : '#7f8292',
-            fontWeight: 'bold'
-          }}
-        >
-          Claim_Type: Cost Efficiency Analysis (Top 3 claim types by average cost (with percentile ranking))
+      >
+        <div>
+          <Typography
+            variant="h6"
+            color="blue-gray"
+            className="mb-3 mt-8"
+            placeholder=""
+            onPointerEnterCapture={() => { }}
+            onPointerLeaveCapture={() => { }}
+            style={{
+              color: showLightnew === true ? 'black' : '#ffb570',
+              fontWeight: 'bold',
+              fontSize: '30px'
+            }}>
+            Claim Type Analysis
 
-        </Typography>
-        <Typography
-          placeholder=""
-          onPointerEnterCapture={() => { }}
-          onPointerLeaveCapture={() => { }}
-          style={{
-            color: showLightnew === true ? 'black' :'#7f8292',
-          }}
-        >
-          {`The highest average cost per claim is observed for BI ($64,491.37, 100th percentile), PD ($16,031.52, 66th
+          </Typography>
+          <Typography
+            variant="h6"
+            color="blue-gray"
+            className="mb-3 mt-8"
+            placeholder=""
+            onPointerEnterCapture={() => { }}
+            onPointerLeaveCapture={() => { }}
+            style={{
+              color: showLightnew === true ? 'black' : '#ffb570'
+            }}>
+            Claim Type Recommendations
+          </Typography>
+          <Typography
+            placeholder=""
+            onPointerEnterCapture={() => { }}
+            onPointerLeaveCapture={() => { }}
+            style={{
+              color: showLightnew === true ? 'black' : '#7f8292',
+              fontWeight: 'bold'
+            }}
+          >
+            Claim_Type: Cost Efficiency Analysis (Top 3 claim types by average cost (with percentile ranking))
+
+          </Typography>
+          <Typography
+            placeholder=""
+            onPointerEnterCapture={() => { }}
+            onPointerLeaveCapture={() => { }}
+            style={{
+              color: showLightnew === true ? 'black' : '#7f8292',
+            }}
+          >
+            {`The highest average cost per claim is observed for BI ($64,491.37, 100th percentile), PD ($16,031.52, 66th
  percentile), MEDICAL PAYMENTS ($0.00, 33th percentile). This may warrant investigation of claims handling
  procedures for these claim types.
 `}
-        </Typography>
+          </Typography>
 
-      </div>
+        </div>
+      </motion.section>
 
       <div>
         <Typography
@@ -255,7 +290,7 @@ export function ClaimtypeAnalysis() {
           onPointerEnterCapture={() => { }}
           onPointerLeaveCapture={() => { }}
           style={{
-            color: showLightnew === true ? 'black' :'#ffb570'
+            color: showLightnew === true ? 'black' : '#ffb570'
           }}
         >
           Condition Charts
@@ -263,57 +298,100 @@ export function ClaimtypeAnalysis() {
 
         </Typography>
       </div>
-      <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-2 grid-auto-rows-auto">
-        {claimtypeanalysisChartsData.map((props) => (
-          <StatisticsChart
-            key={props.title}
-            {...props}
-            footer={
-              <Typography
-                variant="small"
-                className="flex items-center font-normal text-blue-gray-600"
-                placeholder=""
-                onPointerEnterCapture={() => { }}
-                onPointerLeaveCapture={() => { }}>
-                <ClockIcon strokeWidth={2} className="h-4 w-4 text-blue-gray-400" />
-                &nbsp;{props.footer}
-              </Typography>
+      <motion.section
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        viewport={{ once: true }} // Only animate once when in viewport (optional)
+
+      >
+        <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-2 grid-auto-rows-auto">
+          {claimtypeanalysisChartsData.map((props, index) => {
+            let animationDirection = "left"; // Default
+            if (index === 1) {
+              animationDirection = "right";
+            } else if (index % 2 === 0) { // Alternate left/right after the first two
+              animationDirection = "left";
+            } else {
+              animationDirection = "right";
             }
-          />
-        ))}
-      </div>
-      <div>
-        <Typography
-          variant="h6"
-          color="blue-gray"
-          className="mb-3 mt-8"
-          placeholder=""
-          onPointerEnterCapture={() => { }}
-          onPointerLeaveCapture={() => { }}
-          style={{
-            color:showLightnew === true ? 'black' : '#ffb570'
-          }}
-        >
-          Claim Type Performance Summary
-        </Typography>
-        <Table columns={geoperfcolumns} data={geoperfdata} />
-      </div>
-      <div>
-        <Typography
-          variant="h6"
-          color="blue-gray"
-          className="mb-3 mt-8"
-          placeholder=""
-          onPointerEnterCapture={() => { }}
-          onPointerLeaveCapture={() => { }}
-          style={{
-            color:showLightnew === true ? 'black' : '#ffb570'
-          }}
-        >
-          Claim Type Summary
-        </Typography>
-        <Table columns={columns} data={data} />
-      </div>
+            return (
+              <motion.div
+                key={props.title}
+                variants={chartVariants}
+                initial={`hidden${animationDirection.charAt(0).toUpperCase() + animationDirection.slice(1)}`} // hiddenLeft or hiddenRight
+                animate="visible"
+                style={{ overflow: "hidden" }} // Prevents content from overflowing during animation
+              >
+                <StatisticsChart
+                  key={props.title}
+                  {...props}
+                  footer={
+                    <Typography
+                      variant="small"
+                      className="flex items-center font-normal text-blue-gray-600"
+                      placeholder=""
+                      onPointerEnterCapture={() => { }}
+                      onPointerLeaveCapture={() => { }}>
+                      <ClockIcon strokeWidth={2} className="h-4 w-4 text-blue-gray-400" />
+                      &nbsp;{props.footer}
+                    </Typography>
+                  }
+                />
+              </motion.div>
+            )
+          })}
+        </div>
+      </motion.section>
+
+      <motion.div
+        ref={tableRef} // Attach the ref to the table container
+        variants={tableVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"} // Animate based on isInView
+      >
+        <div>
+          <Typography
+            variant="h6"
+            color="blue-gray"
+            className="mb-3 mt-8"
+            placeholder=""
+            onPointerEnterCapture={() => { }}
+            onPointerLeaveCapture={() => { }}
+            style={{
+              color: showLightnew === true ? 'black' : '#ffb570'
+            }}
+          >
+            Claim Type Performance Summary
+          </Typography>
+          <Table columns={geoperfcolumns} data={geoperfdata} />
+        </div>
+      </motion.div>
+
+      <motion.div
+        ref={tableRef2} // Attach the ref to the table container
+        variants={tableVariants}
+        initial="hidden"
+        animate={isInView2 ? "visible" : "hidden"} // Animate based on isInView
+      >
+        <div>
+          <Typography
+            variant="h6"
+            color="blue-gray"
+            className="mb-3 mt-8"
+            placeholder=""
+            onPointerEnterCapture={() => { }}
+            onPointerLeaveCapture={() => { }}
+            style={{
+              color: showLightnew === true ? 'black' : '#ffb570'
+            }}
+          >
+            Claim Type Summary
+          </Typography>
+          <Table columns={columns} data={data} />
+        </div>
+      </motion.div>
+
       <div className="flex items-center space-x-4 mt-6 mb-6">
         <select
           value={selectedState}
@@ -321,11 +399,11 @@ export function ClaimtypeAnalysis() {
           className=" rounded-md px-4 py-2 focus:outline-none "
           style={{
             border: showLightnew === true ? '1px solid black' : '1px solid #ffa857',
-            color:showLightnew === true ? 'black' : '#ffa857',
+            color: showLightnew === true ? 'black' : '#ffa857',
             background: showLightnew === true ? 'white' : 'rgb(23, 24, 29)',
             WebkitAppearance: 'none', // Try to remove default appearance
             appearance: 'none',       // Standard way to remove appearance
-            backgroundColor:showLightnew === true ? 'white' : 'rgb(23, 24, 29)', // Set background color
+            backgroundColor: showLightnew === true ? 'white' : 'rgb(23, 24, 29)', // Set background color
             padding: '8px', // Adjust padding as needed
             borderRadius: '4px', // Add rounded corners if desired
           }}
@@ -339,10 +417,10 @@ export function ClaimtypeAnalysis() {
 
 
         <button
-        
+
           onClick={handleJumpToGeography}
           disabled={!selectedState}
-          className={showLightnew === true ?  `relative inline-flex items-center justify-center mr-2 overflow-hidden text-sm font-medium rounded-lg group focus:ring-4 focus:outline-none dark:border-yellow-500 dark:hover:bg-yellow-600 dark:hover:border-yellow-700 dark:focus:ring-yellow-800 custom-button1` : `relative inline-flex items-center justify-center mr-2 overflow-hidden text-sm font-medium rounded-lg group focus:ring-4 focus:outline-none dark:border-yellow-500 dark:hover:bg-yellow-600 dark:hover:border-yellow-700 dark:focus:ring-yellow-800 custom-button`} // Add custom-button class
+          className={showLightnew === true ? `relative inline-flex items-center justify-center mr-2 overflow-hidden text-sm font-medium rounded-lg group focus:ring-4 focus:outline-none dark:border-yellow-500 dark:hover:bg-yellow-600 dark:hover:border-yellow-700 dark:focus:ring-yellow-800 custom-button1` : `relative inline-flex items-center justify-center mr-2 overflow-hidden text-sm font-medium rounded-lg group focus:ring-4 focus:outline-none dark:border-yellow-500 dark:hover:bg-yellow-600 dark:hover:border-yellow-700 dark:focus:ring-yellow-800 custom-button`} // Add custom-button class
         >
           <span className="relative px-5 py-2.5 transition-all ease-in duration-75 rounded-md group-hover:bg-opacity-0">
             Jump to Claim Type

@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef  } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { motion ,useInView } from "framer-motion";
+
 
 import {
   statisticsChartsData
@@ -22,7 +24,29 @@ export function GeographicAnalysis() {
   const [selectedState, setSelectedState] = useState('');
   const navigate = useNavigate();
   const showLightnew = useSelector((state: { selected: { showlightmode: boolean } }) => state.selected.showlightmode); // Access Redux state
+  const tableRef = useRef(null); // Create a ref for the table container
+  const tableRef2 = useRef(null); // Create a ref for the table container
+  const isInView = useInView(tableRef, { once: true }); // Use useInView hook
+  const isInView2 = useInView(tableRef2, { once: true });
 
+  const containerVariants = {
+    hidden: { opacity: 0 }, // Initially hidden
+    visible: { opacity: 1, transition: { duration: 0.7, ease: "easeInOut", staggerChildren: 0.2 } }, // Staggered animation
+  };
+
+  const chartVariants = {
+    hiddenLeft: { x: -100, opacity: 0 }, // Slide from left
+    hiddenRight: { x: 100, opacity: 0 }, // Slide from right
+    visible: { x: 0, opacity: 1, transition: { duration: 0.7, ease: "easeInOut" } },
+  };
+  const tableVariants = {
+    hidden: { x: -100, opacity: 0 }, // Slide from left
+    visible: { x: 0, opacity: 1, transition: { duration: 0.8, ease: "easeInOut" } }, // Adjust duration and easing as needed
+  };
+  const textVariants = {
+    hidden: { y: -50, opacity: 0 }, // Start above the viewport
+    visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeInOut" } }, // Adjust duration and easing
+  };
   interface StateChangeEvent extends React.ChangeEvent<HTMLSelectElement> { }
 
   const handleStateChange = (event: StateChangeEvent) => {
@@ -231,6 +255,13 @@ export function GeographicAnalysis() {
 
   return (
     <div className="mt-6">
+      <motion.section
+        variants={textVariants}
+        initial="hidden"
+        animate="visible"
+        viewport={{ once: true }} // Only animate once when in viewport (optional)
+
+      >
       <div>
         <Typography
           variant="h6"
@@ -304,7 +335,7 @@ export function GeographicAnalysis() {
  these regions.`}
         </Typography>
       </div>
-
+      </motion.section>
       <div>
         <Typography
           variant="h6"
@@ -322,7 +353,43 @@ export function GeographicAnalysis() {
       </div>
 
       {/* <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3"> */}
-      <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-2 grid-auto-rows-auto">
+      <motion.section
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        viewport={{ once: true }} // Only animate once when in viewport (optional)
+
+      >
+        <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-2 grid-auto-rows-auto">
+
+          {statisticsChartsData.map((props, index) => {
+            let animationDirection = "left"; // Default
+            if (index === 1) {
+              animationDirection = "right";
+            } else if (index % 2 === 0) { // Alternate left/right after the first two
+              animationDirection = "left";
+            } else {
+              animationDirection = "right";
+            }
+            return (
+              <motion.div
+                key={props.title}
+                variants={chartVariants}
+                initial={`hidden${animationDirection.charAt(0).toUpperCase() + animationDirection.slice(1)}`} // hiddenLeft or hiddenRight
+                animate="visible"
+                style={{ overflow: "hidden" }} // Prevents content from overflowing during animation
+              >
+                <StatisticsChart
+                  key={props.title}
+                  {...props}
+
+                />
+              </motion.div>
+            )
+          })}
+        </div>
+      </motion.section>
+      {/* <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-2 grid-auto-rows-auto">
 
         {statisticsChartsData.map((props) => (
           <StatisticsChart
@@ -331,7 +398,13 @@ export function GeographicAnalysis() {
 
           />
         ))}
-      </div>
+      </div> */}
+      <motion.div
+        ref={tableRef} // Attach the ref to the table container
+        variants={tableVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"} // Animate based on isInView
+      >
       <div>
         <Typography
           variant="h6"
@@ -348,6 +421,13 @@ export function GeographicAnalysis() {
         </Typography>
         <Table columns={geoperfcolumns} data={geoperfdata} />
       </div>
+      </motion.div>
+      <motion.div
+        ref={tableRef2} // Attach the ref to the table container
+        variants={tableVariants}
+        initial="hidden"
+        animate={isInView2 ? "visible" : "hidden"} // Animate based on isInView
+      >
       <div>
         <Typography
           variant="h6"
@@ -364,6 +444,7 @@ export function GeographicAnalysis() {
         </Typography>
         <Table columns={columns} data={data} />
       </div>
+      </motion.div>
 
       <div className="flex items-center space-x-4 mt-6 mb-6">
         <select
@@ -372,11 +453,11 @@ export function GeographicAnalysis() {
           className=" rounded-md px-4 py-2 focus:outline-none "
           style={{
             border: showLightnew === true ? '1px solid black' : '1px solid #ffa857',
-            color:showLightnew === true ? 'black' : '#ffa857',
+            color: showLightnew === true ? 'black' : '#ffa857',
             background: showLightnew === true ? 'white' : 'rgb(23, 24, 29)',
             WebkitAppearance: 'none', // Try to remove default appearance
             appearance: 'none',       // Standard way to remove appearance
-            backgroundColor:showLightnew === true ? 'white' : 'rgb(23, 24, 29)', // Set background color
+            backgroundColor: showLightnew === true ? 'white' : 'rgb(23, 24, 29)', // Set background color
             padding: '8px', // Adjust padding as needed
             borderRadius: '4px', // Add rounded corners if desired
           }}
@@ -392,7 +473,7 @@ export function GeographicAnalysis() {
         <button
           onClick={handleJumpToGeography}
           disabled={!selectedState}
-          className={showLightnew === true ?  `relative inline-flex items-center justify-center mr-2 overflow-hidden text-sm font-medium rounded-lg group focus:ring-4 focus:outline-none dark:border-yellow-500 dark:hover:bg-yellow-600 dark:hover:border-yellow-700 dark:focus:ring-yellow-800 custom-button1` : `relative inline-flex items-center justify-center mr-2 overflow-hidden text-sm font-medium rounded-lg group focus:ring-4 focus:outline-none dark:border-yellow-500 dark:hover:bg-yellow-600 dark:hover:border-yellow-700 dark:focus:ring-yellow-800 custom-button`}
+          className={showLightnew === true ? `relative inline-flex items-center justify-center mr-2 overflow-hidden text-sm font-medium rounded-lg group focus:ring-4 focus:outline-none dark:border-yellow-500 dark:hover:bg-yellow-600 dark:hover:border-yellow-700 dark:focus:ring-yellow-800 custom-button1` : `relative inline-flex items-center justify-center mr-2 overflow-hidden text-sm font-medium rounded-lg group focus:ring-4 focus:outline-none dark:border-yellow-500 dark:hover:bg-yellow-600 dark:hover:border-yellow-700 dark:focus:ring-yellow-800 custom-button`}
         >
           <span className="relative px-5 py-2.5 transition-all ease-in duration-75 rounded-md group-hover:bg-opacity-0">
             Jump to Geography
