@@ -1,3 +1,6 @@
+import React, { useState } from 'react';
+import { useNavigate,useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import {
   conditionanalysisChartsData
 } from "@/data";
@@ -7,9 +10,40 @@ import {
   Typography
 } from "@material-tailwind/react";
 import Table from "../components/Table";
+import { setselectedObject } from '../../features/selectedSlice'; // Import your Redux action
 
 
 export function ConditionAnalysis() {
+  const dispatch = useDispatch();
+const { pathname } = useLocation();
+  const [layout, page,inner] = pathname.split("/").filter((el) => el !== "");
+  const [selectedState, setSelectedState] = useState('');
+    const navigate = useNavigate();
+  
+    interface StateChangeEvent extends React.ChangeEvent<HTMLSelectElement> { }
+  
+    const handleStateChange = (event: StateChangeEvent) => {
+      const selectedValue = event.target.value;
+      setSelectedState(selectedValue);
+  
+      if (selectedValue) {
+        const selectedObject = selectData.find(item => item.name === selectedValue);
+        if (selectedObject) {
+          dispatch(setselectedObject(selectedObject));
+        }
+      } else {
+        // Handle the case where no state is selected (e.g., reset Redux state)
+        dispatch(setselectedObject(null)); // Or a default value
+      }
+    };
+  
+    const handleJumpToGeography = () => {
+      if (selectedState) {
+        navigate(`/dashboard/${page}/${selectedState}`);
+      } else {
+        alert("Please select a state.");
+      }
+    };
 
   const geoperfcolumns = [
     "Metric",
@@ -45,6 +79,124 @@ export function ConditionAnalysis() {
     ["Ice", 1, "$1,133.61", "$1,133.61", "5.0%", "0.2%", "PD(1)", "-0.74σ"],
     ["Wind", 4, "$5.50", "$1.38", "20.0%", "0.0%", "BI(2), MEDICAL PAYMENTS(2)", "-0.75σ"]
   ];
+
+  const selectData = [
+    {
+      "id": 1,
+      "name": "Intersection",
+      "type": "Condition", // Corrected to "Condition"
+      "Total Claims": 2,
+      "Total Paid": "$140,442.18",
+      "table data": [
+        {
+          "description": "PARSONS, KS. INSD DRVR WAS TRAVELING ON US-400 WHILE CROSSING INTERSECTION WITH US-169, IV NOTICE CV WAS COMING AND TRIED TO SPEED TO AVOID COLLISION. CV DIDN'T STOP AND STRUCK IV TRAILER.",
+          "totalpaid": "$140,442.18"
+        },
+        {
+          "description": "PARSONS, KS. INSD DRVR WAS TRAVELING ON US-400 WHILE CROSSING INTERSECTION WITH US-169, IV NOTICE CV WAS COMING AND TRIED TO SPEED TO AVOID COLLISION. CV DIDN'T STOP AND STRUCK IV TRAILER.",
+          "totalpaid": "$0.00"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Parking",
+      "type": "Condition",  // Or "Geography" - set based on your logic
+      "Total Claims": 5,
+      "Total Paid": "$45,473.46",
+      "table data": [
+        {
+          "description": "WEATHERFORD, TN-INSD VEH WAS ON LOVES TRUCK STOP PARKED, SUDDENLY CLMT VEH STRUCK INSD VEH. NO MORE DETAILS PROVIDED",
+          "totalpaid": "$0.00"
+        },
+        {
+          "description": "ELOY, AZ- INSD VEH & CLMT VEH 2 WAS PARKED IN A PARKING LOT, CLMT VEH 1 WAS ATTEMPTING TO PARK WHEN CLMT VEH 1 STRUCK INSD VEH & CLMT VEH 2 ON THE RIGHT SIDE.",
+          "totalpaid": "$0.00"
+        },
+        {
+          "description": "ELOY, AZ- INSD VEH & CLMT VEH 2 WAS PARKED IN A PARKING LOT, CLMT VEH 1 WAS ATTEMPTING TO PARK WHEN CLMT VEH 1 STRUCK INSD VEH & CLMT VEH 2 ON THE RIGHT SIDE.",
+          "totalpaid": "$0.00"
+        },
+        {
+          "description": "STRATFORD, TX - INSD VEH HIT PARKED CLMT VEH",
+          "totalpaid": "$20,473.46"
+        },
+        {
+          "description": "STRATFORD, TX - INSD VEH HIT PARKED CLMT VEH",
+          "totalpaid": "$25,000.00"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Normal",  // Or "Condition" or "Geography" - based on your logic
+      "type": "Condition", // Set this based on your actual condition
+      "Total Claims": 2,
+      "Total Paid": "$38,313.97",
+      "table data": [
+        {
+          "description": "ALPINE, CA - INSD VEH WAS DRVING ON FREEWAY WHEN HE SAW CLMT DRVR MAKING SIGNS, CLMT DRVR STATED THAT INSD VEH THROW A ROCK AT CLMT VEH WINDSHIELD.",
+          "totalpaid": "$11.50"
+        },
+        {
+          "description": "CICERO, IL-INSD VEH WAS EXITING PROPERTY AND HIT WALL.",
+          "totalpaid": "$38,302.47"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Backing", // Or "Condition" or "Geography" - based on your logic
+      "type": "Condition",  // Set this based on your actual condition
+      "Total Claims": 1,
+      "Total Paid": "$7,078.24",
+      "table data": [
+        {
+          "description": "Rolla, MO.- INSD VEH BACKED UP TO CLMT VEH.",
+          "totalpaid": "$7,078.24"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Ice", // Or "Condition" or "Geography" - based on your logic
+      "type": "Condition", // Set this based on your actual condition
+      "Total Claims": 1,
+      "Total Paid": "$1,133.61",
+      "table data": [
+        {
+          "description": "MERKEL, TX- INSD DRVR LOST CONTROL OF VEH DUE TO ICE ON RD. INSD DRVR JACKKNIFED AND CAUSED INSD VEH TO STRIKE OVERPASS GAURD RAIL.",
+          "totalpaid": "$1,133.61"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Wind", // Or "Condition" or "Geography" - based on your logic
+      "type": "Condition", // Set this based on your actual condition
+      "Total Claims": 4,
+      "Total Paid": "$5.50",
+      "table data": [
+        {
+          "description": "CALISDA, KS-DUE TO THE HEAVY WINDS, INSD VEH ROLLED OVER.",
+          "totalpaid": "$5.50"
+        },
+        {
+          "description": "CALISDA, KS- DUE TO THE HEAVY WINDS, INSD VEH ROLLED OVER.",
+          "totalpaid": "$0.00"
+        },
+        {
+          "description": "CALISDA, KS-DUE TO THE HEAVY WINDS, INSD VEH ROLLED OVER.",
+          "totalpaid": "$0.00"
+        },
+        {
+          "description": "CALISDA, KS- DUE TO THE HEAVY WINDS, INSD VEH ROLLED OVER.",
+          "totalpaid": "$0.00"
+        }
+      ]
+    },
+   
+  ]
 
 
   return (
@@ -198,7 +350,40 @@ Condition Recommendations
         </Typography>
         <Table columns={columns} data={data} />
       </div>
-      
+      <div className="flex items-center space-x-4 mt-6 mb-6">
+        <select
+          value={selectedState}
+          onChange={handleStateChange}
+          className=" rounded-md px-4 py-2 focus:outline-none "
+          style={{
+            border: '1px solid #ffa857',
+            color: '#ffa857',
+            background: 'rgb(23, 24, 29)',
+            WebkitAppearance: 'none', // Try to remove default appearance
+            appearance: 'none',       // Standard way to remove appearance
+            backgroundColor: 'rgb(23, 24, 29)', // Set background color
+            padding: '8px', // Adjust padding as needed
+            borderRadius: '4px', // Add rounded corners if desired
+          }}
+        >
+
+          <option value="" disabled>Select Condition</option> {/* Default option */}
+          {selectData.map(item => ( // Dynamically render options
+            <option key={item.id} value={item.name}>{item.name}</option>
+          ))}
+        </select>
+
+
+        <button
+          onClick={handleJumpToGeography}
+          disabled={!selectedState}
+          className={`relative inline-flex items-center justify-center mr-2 overflow-hidden text-sm font-medium rounded-lg group focus:ring-4 focus:outline-none dark:border-yellow-500 dark:hover:bg-yellow-600 dark:hover:border-yellow-700 dark:focus:ring-yellow-800 custom-button`} // Add custom-button class
+        >
+          <span className="relative px-5 py-2.5 transition-all ease-in duration-75 rounded-md group-hover:bg-opacity-0">
+            Jump to Condition
+          </span>
+        </button>
+      </div>
      
     </div>
   );
